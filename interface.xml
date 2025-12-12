@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window height='960' weight='540'>
+	
+	<header>  <MusicoreLogo/>  </header>
+	
+	<player weight='40%' height='100%'>
+		
+	</player>
+	
+	<tracklist>
+		
+	</tracklist>
+	
+</window>
