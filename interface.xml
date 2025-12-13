@@ -3,12 +3,15 @@
 	
 	<header>  <MusicoreLogo/>  </header>
 	
-	<player weight='40%' height='100%'>
-		
+	<player weight='40%' height='100%' bg-color='#C97B5F' fade-direction='right' fade-weight='27px'>
+		<AudioCover/>
+		<Timeline/>
+		<PPNbtns/> <!-- PPN - Previous Play Next Buttons -->
+		<TrackListController/>
 	</player>
 	
-	<tracklist>
-		
-	</tracklist>
+	
+	
+	<Tracklist/>
 	
 </window>
