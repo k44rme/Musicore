@@ -1,0 +1,9 @@
+
+music_path = "TYPE YOUR PATH TO MUSIC HERE"
+
+[profile]
+avatar = "src/assets/profile" # Path to avatar. Best way: replace avatar.jpg file to your avatar
+banner = "src/assets/profile" # Path to banner. Best way: replace banner.jpg  file to your banner
+nickname = "Musicore-user" # Replace this string to your nichname
+
+

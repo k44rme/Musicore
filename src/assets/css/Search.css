@@ -1,0 +1,71 @@
+@import "./Variables.css";
+
+#search-btn {
+    --radius: 7px;
+    position: relative;
+    top: 2px;
+    left: 1%;
+    appearance: none;
+    background-color: transparent;
+    border-color: transparent;
+    border-top-right-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+
+    cursor: pointer;
+}
+
+#search-field:focus {
+    outline: none;
+}
+
+#search-field {
+    height: 20px;
+    width: 90%;
+    padding-left: 7px;
+    max-width: 90%;
+    min-width: 85%;
+
+    border-radius: 7px;
+    border-color: var(--first-main);
+    border: none;
+
+    cursor: text;
+
+    font-family: "JetBrains Mono", monospace;
+}
+
+.search-box {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15px;
+    margin: auto;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--second-main);
+    border-radius: 10px;
+    width: 60%;
+    height: 35px;
+    min-width: 75px;
+    max-width: 300px;
+    padding: 0px 10px;
+
+    z-index: 100000;
+}
+
+.avatar {
+    width: 40px;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 15px;
+    left: 85%;
+    transform: translateX(-80%);
+
+    z-index: 100000;
+}
+
+

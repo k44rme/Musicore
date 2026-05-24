@@ -1,0 +1,84 @@
+.profile {
+    user-select: none;
+    
+    width: 500px;
+}
+
+.profile-avatar {
+    width: 100px;
+    border-radius: 50%;
+
+    position: relative;
+    left: -3%;
+
+    z-index: 1;
+    top: 15%;
+
+    border: 5px solid #fff;
+}
+
+.nickname {
+    position: relative;
+    left: -5%;
+    top: 17%;
+
+    z-index: 1;
+
+    border: 1px solid #fff;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 25px;
+}
+
+.header {
+    position: absolute;
+
+    width: 500px;
+    height: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0%;
+    overflow: hidden;
+}
+
+.banner {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 20px;
+
+    z-index: 0;
+
+    position: absolute;
+    top: -15px;
+}
+
+.recent {
+    position: absolute;
+
+    width: 500px;
+    height: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15%;
+}
+
+.recent-label {
+    position: relative;
+    left: -30%;
+    top: 10%;
+}
+
+.body {
+    width: 100%;
+}
