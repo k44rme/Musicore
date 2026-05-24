@@ -66,7 +66,7 @@ function PlayerPage() {
   }
 
   return (
-    <audio controls src={audioURL} className="player" />
+    <audio controls src={audioURL} autoPlay className="player" />
   );
 }
 

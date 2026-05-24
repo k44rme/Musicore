@@ -1,5 +1,5 @@
 
-music_path = "TYPE YOUR PATH TO MUSIC HERE"
+music_path = "C:/Users/k44rm/Music" # Type your directory with music instead
 
 [profile]
 avatar = "src/assets/profile" # Path to avatar. Best way: replace avatar.jpg file to your avatar
