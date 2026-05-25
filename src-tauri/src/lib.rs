@@ -16,7 +16,7 @@ use toml_edit::DocumentMut;
 fn edit_config(new_music_path: &str) -> Result<(), String> {
 
     // Read existing file
-    let contents = fs::read_to_string("../musicore.config.toml").unwrap_or_else(|err| {
+    let contents = fs::read_to_string("musicore.config.toml").unwrap_or_else(|err| {
       println!("Error while finding the config.toml file. Error: ");
       return err.to_string();
     });
@@ -26,7 +26,7 @@ fn edit_config(new_music_path: &str) -> Result<(), String> {
     doc["music_path"] = toml_edit::value(new_music_path);
     
     // Write back (preserves comments and formatting)
-    fs::write("../musicore.config.toml", doc.to_string());
+    fs::write("musicore.config.toml", doc.to_string());
     
     Ok(())
 }
@@ -41,7 +41,7 @@ async fn read_file(path: String) -> Result<Vec<u8>, String> {
 
 #[tauri::command]
 fn read_config() -> Result<String, std::string::String> {
-  let path = dunce::canonicalize(PathBuf::from("../musicore.config.toml")).unwrap();
+  let path = dunce::canonicalize(PathBuf::from("musicore.config.toml")).unwrap();
   let contents = fs::read_to_string(path.to_string_lossy().to_string()).unwrap();
   let _config: config::Config = toml::from_str(&contents).unwrap();
 
