@@ -1,13 +1,13 @@
-import avatar from "../assets/test_assets/k44rme.jpg"
-import banner from "../assets/test_assets/k44rme_banner.png"
-import logo from "../assets/Musicore Full.svg"
+import avatar from "@assets/test_assets/k44rme.jpg"
+import banner from "@assets/test_assets/k44rme_banner.png"
+import logo from "@assets/Musicore Full.svg"
 
-import track_cover from "../assets/test_assets/Test track cover.png"
-import album_cover from "../assets/test_assets/Test album cover.png"
-import author_cover from "../assets/test_assets/Test author img.png"
+import track_cover from "@assets/test_assets/Test track cover.png"
+import album_cover from "@assets/test_assets/Test album cover.png"
+import author_cover from "@assets/test_assets/Test author img.png"
 
-import "../assets/css/ProfilePage.css"
-import "../assets/css/Music.css"
+import "@css/ProfilePage.css"
+import "@css/Music.css"
 import { Link } from "react-router-dom"
 
 function ProfilePage() {

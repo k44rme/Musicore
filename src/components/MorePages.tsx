@@ -1,5 +1,5 @@
-import more from "../assets/icons/more-icon.svg"
-import "../assets/css/MorePages.css"
+import more from "@assets/icons/more-icon.svg"
+import "@css/MorePages.css"
 
 function MorePages() {
     return (

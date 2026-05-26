@@ -1,7 +1,7 @@
 import { getCurrentWindow } from "@tauri-apps/api/window";
-import close from "../assets/icons/Titlebar/close-icon.svg";
-import minimize from "../assets/icons/Titlebar/minimize.svg"
-import "../assets/css/WinDecoration.css"
+import close from "@assets/icons/Titlebar/close-icon.svg";
+import minimize from "@assets/icons/Titlebar/minimize.svg"
+import "@css/WinDecoration.css"
 
 let appWindow = getCurrentWindow();
 function WindowDecoration() {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
-import "../assets/css/MainPage-music.css";
+import "@css/MainPage-music.css";
 import { Link } from "react-router-dom";
 import "../structs"
 import { Config, MusicFile } from "../structs";
@@ -14,10 +14,22 @@ function Music() {
   useEffect(() => {
     const cancelled = false
 
+    const createConfig = async () => {
+      try {
+        const res = await invoke<string>("create_config")
+        setConfig(JSON.parse(res))
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
     const loadConfig = async () => {
       try {
         const res = await invoke<string>("read_config")
-        if(!cancelled) setConfig(JSON.parse(res))
+        if (res == "err") {
+          createConfig()
+        }
+        if(!cancelled && res != "err") setConfig(JSON.parse(res))
       } catch (e) {
         console.log(e)
       }

@@ -1,7 +1,7 @@
 import Search from "../components/Search";
-import "../assets/css/MainPage.css"
+import "@css/MainPage.css"
 import Playlists from "../components/Playlists";
-import Musicore_full from "../assets/Musicore Full.svg";
+import Musicore_full from "@assets/Musicore Full.svg";
 import { lazy, Suspense } from "react";
 
 function MainPage() {

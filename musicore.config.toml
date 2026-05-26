@@ -1,9 +1,9 @@
 
-music_path = ""
+music_path = "C:/Users/K44rm/Music"
 
 [profile]
-avatar = "src/assets/profile" # Path to avatar
-banner = "src/assets/profile" # Path to banner
+avatar = "assets/profile" # Path to avatar
+banner = "assets/profile" # Path to banner
 nickname = "Musicore-user" # Replace this string to your nichname
 
 

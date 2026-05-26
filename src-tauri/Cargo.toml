@@ -1,6 +1,6 @@
 [package]
-name = "musicore"
-version = "1.0.0"
+name = "Musicore"
+version = "0.0.1"
 description = "Music player"
 authors = ["k44rme"]
 edition = "2021"

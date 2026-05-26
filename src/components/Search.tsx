@@ -1,6 +1,6 @@
-import search from "../assets/icons/search_icon.svg";
-import "../assets/css/Search.css";
-import avatar from "../assets/test_assets/k44rme.jpg";
+import search from "@assets/icons/search_icon.svg";
+import "@css/Search.css";
+import avatar from "@assets/test_assets/k44rme.jpg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 

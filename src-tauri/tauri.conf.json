@@ -1,18 +1,18 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "musicore",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "identifier": "com.k44rme.musicore",
-  "build": {
-    "beforeDevCommand": "npm run dev",
+    "build": {
+    "beforeDevCommand": "bun run dev",
+    "beforeBuildCommand": "bun run build",
     "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "npm run build",
     "frontendDist": "../dist"
   },
   "app": {
     "windows": [
       {
-        "title": "musicore",
+        "title": "Musicore",
         "width": 900,
         "height": 600,
         "decorations": false,
@@ -45,7 +45,7 @@
     ],
     "resources": [
       "../musicore.config.toml",
-      "../src/assets/"
+      "../assets/"
     ]
   }
 }
