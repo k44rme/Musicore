@@ -4,3 +4,6 @@ Musicore - is a music player, which allows you to listen your music locally(Yeah
 
 ## Features
 Music listening
+
+# Donation
+<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.donationalerts.com%2Fimg%2Fopengraph%2Fda_logo.png&f=1&nofb=1&ipt=2993b37d4e6007bc81f8660d0bd7234e143b385f26494749063a8735a393fd1d" />
