@@ -34,7 +34,7 @@ export default function Search() {
           placeholder="Search..."
         />
         <button type="submit" id="search-btn" onSubmit={onSubmitFunc}>
-          <img src={search} alt="Search" />
+          <img src={search} />
         </button>
       </form>
 

@@ -12,7 +12,9 @@
     "core:window:allow-minimize",
     {
       "identifier": "fs:scope",
-      "allow": ["$RESOURCE/**/*"]
+      "allow": [
+        { "path": "$RESOURCE/**" }
+      ]
     }
   ]
 }
