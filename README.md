@@ -1,4 +1,6 @@
-<img src="https://github.com/k44rme/Musicore/blob/main/assets/Musicore%20Full.svg" style="display:block; margin:auto" />
+<p align="center"
+  <img src="https://github.com/k44rme/Musicore/blob/main/assets/Musicore%20Full.svg" width="500" />
+</p>
 
 # Musicore
 ## About this project
