@@ -7,5 +7,5 @@ Music listening
 
 # Donation
 <a href="https://www.donationalerts.com/r/k44rme">
-  <img src="https://www.donationalerts.com/img/opengraph/da_logo.png" style="width: '500px'; border-radius: '10px'" />
-</a>a
+  <img src="https://www.donationalerts.com/img/opengraph/da_logo.png" style="width:500px; border-radius:10px" />
+</a>
