@@ -65,6 +65,9 @@ function Music() {
   }, [ready, config])
 
   let music_path: String = config?.music_path ?? ""
+  console.log(music_path);
+  
+
   if (music_path == "") {
     console.log("The from");
     
@@ -82,7 +85,7 @@ function Music() {
                 await invoke("edit_config", {
                   newMusicPath: path
                 })
-                console.log("Config edit!");
+                window.location.reload();
                 
               } catch (error) {
                 console.error(error)
@@ -94,7 +97,7 @@ function Music() {
         </form>
       </div>
     )
-  } else {
+  } else if (music_path != "") {
     console.log("Config found, music loading...");
     
     return (

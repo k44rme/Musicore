@@ -18,6 +18,8 @@ pub struct Profile {
     pub nickname: String,  // User nickanme
 }
 
+// Functions starts here 
+
 #[tauri::command]
 pub fn create_config() -> String {
   let path = std::env::current_dir().unwrap();
@@ -105,15 +107,26 @@ pub fn edit_config(new_music_path: &str) -> Result<(), String> {
 
 #[tauri::command]
 pub fn read_config() -> Result<String, std::string::String> {
-  let err: String = "err".to_string();
-  let path = match fs::read_to_string("../musicore.config.toml") {
-      Ok(c) => {
-        println!("Config was found");
-        c
-      },
-      Err(_) => return Err(err),
-  };
-  let config: Config = toml::from_str(&path).unwrap();
+    println!("=== Starting to read config ===");
+    let exe_dir = std::env::current_exe()
+        .map_err(|e| format!("Failed to get executable path: {}", e)).unwrap()
+        .parent()
+        .ok_or("No parent directory").unwrap()
+        .to_path_buf();
 
-  serde_json::to_string(&config).map_err(|e| e.to_string())
+    println!("File was found");
+
+    let err: String = "err".to_string();
+    let path = match fs::read_to_string(exe_dir.join("musicore.config.toml")) {
+        Ok(c) => {
+            println!("Get file successfully");
+            c
+        },
+        Err(_) => return Err(err),
+    };
+    let config: Config = toml::from_str(&path).unwrap();
+
+    println!("=== End of config reading ===");
+
+    serde_json::to_string(&config).map_err(|e| e.to_string())
 }
