@@ -1,4 +1,4 @@
-import logo from "../assets/Musicore Full.svg"
+import logo from "@assets/Musicore Full.svg"
 import Search from "../components/Search"
 
 function SearchPage() {

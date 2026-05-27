@@ -5,7 +5,7 @@ import ProfilePage from "./pages/ProfilePage";
 import WindowDecoration from "./components/WindowDecoration";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
-import "./assets/css/App.css"
+import "./css/App.css"
 import PlayerPage from "./pages/PlayerPage";
 
 const router = createBrowserRouter([

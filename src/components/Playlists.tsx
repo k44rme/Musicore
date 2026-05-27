@@ -1,4 +1,4 @@
-import "../assets/css/Playlists.css"
+import "@css/Playlists.css"
 
 function Playlists() {
     /* let content = [

@@ -23,6 +23,6 @@
       "node"
     ]
   },
-  "include": ["src", "server/search.js"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

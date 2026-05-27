@@ -1,9 +1,9 @@
 
-music_path = "C:/Users/k44rm/Music" # Type your directory with music instead
+music_path = ""
 
 [profile]
-avatar = "src/assets/profile" # Path to avatar. Best way: replace avatar.jpg file to your avatar
-banner = "src/assets/profile" # Path to banner. Best way: replace banner.jpg  file to your banner
+avatar = "assets/profile" # Path to avatar
+banner = "assets/profile" # Path to banner
 nickname = "Musicore-user" # Replace this string to your nichname
 
 
