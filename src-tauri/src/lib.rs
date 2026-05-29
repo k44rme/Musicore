@@ -5,6 +5,7 @@
 
 mod music;
 mod config;
+mod profile;
 
 use std::{fs, path::PathBuf, process};
 use dunce;
@@ -16,7 +17,11 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_fs::init())
-        .invoke_handler(tauri::generate_handler![music::get_music_files, config::read_config, config::edit_config, config::create_config])
+        .invoke_handler(tauri::generate_handler![
+            music::get_music_files, 
+            config::read_config, config::edit_music_path, config::create_config,
+            profile::get_profile_info
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

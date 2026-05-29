@@ -70,33 +70,34 @@ function Music() {
 
   if (music_path == "") {
     console.log("The from");
-    
-    return (
-      <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: "300px" }}>
-        <p>Путь до вашей папки c музыкой?</p>
-        <form>
-          <input type="text" name="music" id="set-music-path" value={path} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setPath(e.target.value)
-          }} />
-          <button type="submit" onClick={(e) => {
-            e.preventDefault()
-            const newMusicPath = async () => {
-              try {
-                await invoke("edit_config", {
-                  newMusicPath: path
-                })
-                window.location.reload();
-                
-              } catch (error) {
-                console.error(error)
+    setTimeout(() => {
+      return (
+        <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: "300px" }}>
+          <p style={{textAlign: "center"}}>Путь до вашей папки c музыкой?</p>
+          <form className="find-music">
+            <input type="text" name="music" id="set-music-path" value={path} placeholder="C:/Users/...." onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setPath(e.target.value)
+            }} />
+            <button type="submit" onClick={(e) => {
+              e.preventDefault()
+              const newMusicPath = async () => {
+                try {
+                  await invoke("edit_music_path", {
+                    newMusicPath: path
+                  })
+                  window.location.reload();
+                  
+                } catch (error) {
+                  console.error(error)
+                }
               }
-            }
-
-            newMusicPath()
-          }}>OK</button>
-        </form>
-      </div>
-    )
+  
+              newMusicPath()
+            }}>OK</button>
+          </form>
+        </div>
+      )
+    }, 1000)
   } else if (music_path != "") {
     console.log("Config found, music loading...");
     
@@ -104,9 +105,14 @@ function Music() {
       <div className="song-list">
         {
           music.map((file: MusicFile, index) => {
+            let queue = {
+              index: index,
+              file: music
+            }
+            
             let song = "song song-"+index+1;
             return(
-              <Link to={`/play/${file.id}`} key={file.file_name} state={file} className="song-link">
+              <Link to={`/play/${file.id}`} key={file.file_name} state={queue} className="song-link">
                 <div className={song} key={index}>
                     <img className="song-cover" src={"data:image/png;base64, "+file.image} alt="" />
                     <div className="song-info">

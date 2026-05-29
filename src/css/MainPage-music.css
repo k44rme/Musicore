@@ -53,3 +53,42 @@
 .song-link {
     text-decoration: none;
 }
+
+#set-music-path {
+    --border: 7px;
+
+    border: none;
+    width: 300px;
+    height: 20px;
+
+    border: 2px solid #8b8b8b;
+    border-top-left-radius: var(--border);
+    border-bottom-left-radius: var(--border);
+    padding-left: 10px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+#set-music-path:focus {
+    outline: none;
+}
+
+.find-music > button {
+    --border: 7px;
+
+    border: none;
+    background-color: transparent;
+    border: 2px solid #8b8b8b;
+    height: 26px;
+    margin-top: 1px;
+    background-color: #8b8b8b;
+    color: #fff;
+    border-top-right-radius: var(--border);
+    border-bottom-right-radius: var(--border);
+
+    padding: 0px 7px;
+    padding-left: 1px;
+}
+
+.find-music > button:hover {
+    cursor: pointer;
+}

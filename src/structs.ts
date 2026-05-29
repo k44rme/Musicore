@@ -10,10 +10,10 @@ export type MusicFile = {
 
 export type Config = {
   music_path: String;
-  profile: UserProfile;
+  profile: Profile;
 }
 
-export type UserProfile = {
+export type Profile = {
   avatar: String;
   banner: String;
   nickname: String;

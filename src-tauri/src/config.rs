@@ -8,7 +8,7 @@ pub struct Config {
     #[serde(rename="music_path")]
     pub music_path: String,
     #[serde(rename="profile")]
-    pub user_profile: Profile,
+    pub profile: Profile,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
@@ -24,7 +24,7 @@ pub struct Profile {
 pub fn create_config() -> String {
   let path = std::env::current_dir().unwrap();
   let content = r#"
-      music_path = 'C:/Users/K44rm/Music'
+      music_path = ''
 
       [profile]
       avatar = 'assets/profile' # Path to avatar
@@ -39,10 +39,7 @@ pub fn create_config() -> String {
 }
 
 #[tauri::command]
-pub fn edit_config(new_music_path: &str) -> Result<(), String> {
-    // Get executable directory
-    println!("=== EDIT CONFIG START ===");
-    println!("New music path: {}", new_music_path);
+pub fn edit_music_path(new_music_path: &str) -> Result<(), String> {
     
     // Get executable directory
     let exe_dir = std::env::current_exe()
@@ -63,9 +60,6 @@ pub fn edit_config(new_music_path: &str) -> Result<(), String> {
     let contents = fs::read_to_string(&config_path)
         .map_err(|e| format!("Error reading config from {:?}: {}", config_path, e)).unwrap();
     
-    println!("Current config contents:");
-    println!("{}", contents);
-    
     // Parse TOML
     let mut doc = contents
         .parse::<DocumentMut>()
@@ -78,7 +72,6 @@ pub fn edit_config(new_music_path: &str) -> Result<(), String> {
     
     // Edit the music_path value
     doc["music_path"] = toml_edit::value(new_music_path);
-    println!("Updated music_path in memory");
     
     // Check new value
     if let Some(updated) = doc.get("music_path") {
@@ -87,46 +80,33 @@ pub fn edit_config(new_music_path: &str) -> Result<(), String> {
     
     // Write back
     let new_contents = doc.to_string();
-    println!("Writing new contents:");
-    println!("{}", new_contents);
     
     fs::write(&config_path, &new_contents)
         .map_err(|e| format!("Failed to write config to {:?}: {}", config_path, e)).unwrap();
     
-    println!("Config written to disk");
     
     // Verify it was written
     let verify = fs::read_to_string(&config_path)
         .map_err(|e| format!("Failed to verify: {}", e)).unwrap();
-    println!("Verification - file contents:");
-    println!("{}", verify);
     
-    println!("=== EDIT CONFIG END ===");
     Ok(())
 }
 
 #[tauri::command]
 pub fn read_config() -> Result<String, std::string::String> {
-    println!("=== Starting to read config ===");
     let exe_dir = std::env::current_exe()
         .map_err(|e| format!("Failed to get executable path: {}", e)).unwrap()
         .parent()
         .ok_or("No parent directory").unwrap()
         .to_path_buf();
 
-    println!("File was found");
 
     let err: String = "err".to_string();
     let path = match fs::read_to_string(exe_dir.join("musicore.config.toml")) {
-        Ok(c) => {
-            println!("Get file successfully");
-            c
-        },
+        Ok(c) => c,
         Err(_) => return Err(err),
     };
     let config: Config = toml::from_str(&path).unwrap();
-
-    println!("=== End of config reading ===");
 
     serde_json::to_string(&config).map_err(|e| e.to_string())
 }
