@@ -1,72 +1,20 @@
-import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "@css/MainPage-music.css";
 import { Link } from "react-router-dom";
 import "../structs"
-import { Config, MusicFile } from "../structs";
+import { MusicFile } from "../structs";
+import music_fn from "../logic/music";
+import { useState } from "react";
 
 function Music() {
-  const [music, setMusic] = useState<MusicFile[]>([]);
-  const [config, setConfig] = useState<Config>();
-  const [ready, setReady] = useState(false);
   const [path, setPath] = useState("");
-
-  useEffect(() => {
-    const cancelled = false
-
-    const createConfig = async () => {
-      try {
-        const res = await invoke<string>("create_config")
-        setConfig(JSON.parse(res))
-        console.log("Config created");
-        
-      } catch (e) {
-        console.log(e);
-      }
-    }
-
-    const loadConfig = async () => {
-      try {
-        const res = await invoke<string>("read_config")
-        if (res == "err") {
-          createConfig()
-        }
-        if(!cancelled && res != "err") setConfig(JSON.parse(res))
-        console.log("Config was found");
-        
-      } catch (e) {
-        console.log(e)
-      }
-    }
-
-    loadConfig();
-    setReady(true)
-  }, []);
   
-  useEffect(() => {
-    if (!ready || !config) return;
-
-    const loadMusic = async () => {
-      try {
-        if (config.music_path != "") {
-          const result = await invoke<string>("get_music_files", { 
-            musicPath: config?.music_path,
-          });
-          setMusic(JSON.parse(result));
-          console.log("Music loaded");
-          
-        }
-      } catch (err) {
-        console.error("Failed to load music:", err);
-      }
-    };
-    
-    loadMusic();
-  }, [ready, config])
+  let mus = music_fn();
+  let config = mus.config
+  let music: MusicFile[] = mus.music
 
   let music_path: String = config?.music_path ?? ""
   console.log(music_path);
-  
 
   if (music_path == "") {
     console.log("The from");

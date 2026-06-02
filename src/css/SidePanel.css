@@ -1,0 +1,109 @@
+.side-panel {
+    height: 100%;
+    width: 235px;
+    position: absolute;
+    background-color: #eee;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+.logo {
+    width: 150px;
+    height: 52px;
+    margin-top: 23px;
+    margin-left: 33px;
+}
+
+.menu-label {
+    margin-left: 20px;
+    margin-top: 100px;
+    letter-spacing: .15em;
+}
+
+.menu-item {
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    margin-bottom: 14px;
+    letter-spacing: 0.15em;
+    font-style: normal;
+    list-style-position: inside;
+    list-style: none;
+}
+
+.menu-item-1::before {
+    content: url('@assets/icons/Sidepanel/Home.svg');
+}
+
+.menu-item-2::before {
+    content: url('@assets/icons/Sidepanel/Search.svg');
+}
+
+.menu-item-3::before {
+    content: url('@assets/icons/Sidepanel/Discover.svg');
+}
+
+.menu-item-4::before {
+    content: url('@assets/icons/Sidepanel/Library.svg');
+}
+
+.menu-item-label {
+    text-decoration: none;
+    color: #000;
+}
+
+.menu-item-label:visited {
+    color: #000;
+}
+
+.menu-item::before {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 20px;
+    transform: translateY(2px);
+}
+
+.playlists-label {
+    margin-left: 20px;
+    letter-spacing: .15em;
+}
+
+.playlist-item {
+    list-style-type: none;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    margin-bottom: 7px;
+}
+
+.playlist-item a {
+    text-decoration: none;
+    color: #000;
+}
+
+.profile {
+    position: absolute;
+    bottom: 1%;
+    left: 25px;
+    background-color: #fff;
+    width: 75%;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.avatar {
+    width: 50px;
+    border-radius: 50%;
+    transform: translateY(10%);
+}
+
+.username {
+    position: absolute;
+    left: 35%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-size: 20px;
+    font-weight: bold;
+}

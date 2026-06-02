@@ -19,7 +19,6 @@ pub struct Profile {
 }
 
 // Functions starts here 
-
 #[tauri::command]
 pub fn create_config() -> String {
   let path = std::env::current_dir().unwrap();
@@ -40,7 +39,6 @@ pub fn create_config() -> String {
 
 #[tauri::command]
 pub fn edit_music_path(new_music_path: &str) -> Result<(), String> {
-    
     // Get executable directory
     let exe_dir = std::env::current_exe()
         .map_err(|e| format!("Failed to get executable path: {}", e)).unwrap()
@@ -73,19 +71,15 @@ pub fn edit_music_path(new_music_path: &str) -> Result<(), String> {
     // Edit the music_path value
     doc["music_path"] = toml_edit::value(new_music_path);
     
-    // Check new value
     if let Some(updated) = doc.get("music_path") {
         println!("New music_path value: {:?}", updated.as_str());
     }
     
-    // Write back
     let new_contents = doc.to_string();
     
     fs::write(&config_path, &new_contents)
         .map_err(|e| format!("Failed to write config to {:?}: {}", config_path, e)).unwrap();
-    
-    
-    // Verify it was written
+
     let verify = fs::read_to_string(&config_path)
         .map_err(|e| format!("Failed to verify: {}", e)).unwrap();
     
@@ -99,7 +93,6 @@ pub fn read_config() -> Result<String, std::string::String> {
         .parent()
         .ok_or("No parent directory").unwrap()
         .to_path_buf();
-
 
     let err: String = "err".to_string();
     let path = match fs::read_to_string(exe_dir.join("musicore.config.toml")) {
