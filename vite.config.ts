@@ -32,7 +32,8 @@ export default defineConfig(async () => ({
   resolve: {
     alias: {
       '@assets': path.resolve(__dirname, './assets'),
-      '@css': path.resolve(__dirname, "./src/css")
+      '@css': path.resolve(__dirname, "./src/css"),
+      '@style': path.resolve(__dirname, "./src/styles")
     }
   }
 }));

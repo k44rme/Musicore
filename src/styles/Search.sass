@@ -1,0 +1,54 @@
+@use "./Variables" as *
+
+#search-btn
+    $radius: 7px !global
+
+    position: relative
+    top: 2px
+    left: 1%
+    appearance: none
+    background-color: $invise
+    border:
+        color: $invise
+        top-right-radius: $radius
+        bottom-right-radius: $radius
+
+    cursor: pointer
+    padding-left: 5px
+    
+#search-field
+    height: 20px
+    width: 90%
+    padding-left: 7px
+    max-width: 90%
+    min-width: 85%
+
+    border: none
+        radius: $radius
+        color: $secondary
+
+    cursor: text
+
+    &:focus
+        outline: none
+
+.search-box
+    position: absolute 
+    left: 65% 
+    transform: translateX(-65%) 
+    top: 15px 
+    margin: auto 
+    
+    display: flex 
+    justify-content: center 
+    align-items: center 
+
+    background-color: $secondary 
+    border-radius: 10px 
+    width: 60% 
+    height: 35px 
+    min-width: 75px 
+    max-width: 400px 
+    padding: 0px 5px 
+
+    z-index: 100000 

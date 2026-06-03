@@ -1,0 +1,111 @@
+@use './Variables' as *
+    
+.side-panel
+    height: calc( 100% + .6em ) 
+    width: 235px 
+    position: absolute 
+    background-color: #eee 
+    margin: 0 
+    padding: 0 
+    box-sizing: border-box 
+    margin:
+        left: -10px 
+        top: -10px 
+
+.sidepanel-profile
+    position: absolute 
+    bottom: 1% 
+    left: 25px 
+    background-color: #fff 
+    width: 75% 
+    padding: 5px 10px 
+    border-radius: 10px 
+
+.logo
+    width: 150px 
+    height: 52px 
+    margin:
+        top: 25px 
+        left: 33px 
+
+.menu-label
+    margin:
+        left: 20px 
+        top: 10px
+        bottom: 10px
+    letter-spacing: .15em 
+
+.menu-item
+    font:
+        size: 20px 
+        family: 'Nunito', sans-serif
+        style: normal 
+    margin:
+        bottom: 14px 
+        left: 50px
+    list-style: none
+        position: inside 
+    letter-spacing: 0.15em 
+
+    &-label
+        text-decoration: none
+        color: #000
+        
+        &:visited
+            color: #000
+
+    &::before
+        display: inline-block 
+        font-size: 20px 
+        transform: translateY(2px)
+        margin-right: 7px
+
+.menu-item
+    &-1::before
+        content: url('@assets/icons/Sidepanel/Home.svg')
+    
+    &-2::before
+        content: url('@assets/icons/Sidepanel/Search.svg')
+
+    &-3::before
+        content: url('@assets/icons/Sidepanel/Discover.svg')
+
+    &-4::before
+        content: url('@assets/icons/Sidepanel/Library.svg')
+
+.sidepanel-playlist
+    &-label
+        margin-left: 20px 
+        letter-spacing: .15em 
+
+    &-item
+        list-style-type: none
+        letter-spacing: 5%
+        font:
+            size: 20px
+            family: 'Nunito', sans-serif 
+        margin:
+            top: 10px
+            left: 50px
+
+        a
+            text-decoration: none 
+            color: #000 
+
+
+.sidepanel-avatar
+    width: 50px 
+    border-radius: 50% 
+    transform: translateY(10%) 
+
+.sidepanel-username
+    position: absolute 
+    left: 35% 
+    top: 50% 
+    transform: translateY(-50%) 
+
+    font:
+        size: 20px
+        weight: bold
+
+    letter-spacing: 5%

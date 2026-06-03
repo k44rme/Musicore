@@ -1,4 +1,4 @@
-import "@css/SidePanel.css"
+import "@style/SidePanel.sass"
 import Musicore from "@assets/Logo.svg"
 import { Link } from "react-router-dom";
 import avatar from "@assets/test_assets/k44rme.jpg"
@@ -33,20 +33,20 @@ function SidePanel() {
                     })
                 }
             </ul>
-            <h2 className="playlists-label">Playlists</h2>
+            <h2 className="sidepanel-playlist-label">Playlists</h2>
             <ul>
                 {
                     playlists.map((playlist: any, index) => (
-                        <li className="playlist-item" key={index}>
+                        <li className="sidepanel-playlist-item" key={index}>
                             <Link to={`/playlist/${playlist}`}>{playlist}</Link>
                         </li>
                     ))
                 }
             </ul>
-            <div className="profile">
-                <img src={avatar} alt="" className="avatar" />
-                <span className="username">Nickname</span>
-            </div>
+            <Link className="sidepanel-profile" to="/profile">
+                <img src={avatar} alt="" className="sidepanel-avatar" />
+                <span className="sidepanel-username">Nickname</span>
+            </Link>
         </div>
      );
 }

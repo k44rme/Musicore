@@ -1,14 +1,7 @@
 import avatar from "@assets/test_assets/k44rme.jpg"
 import banner from "@assets/test_assets/k44rme_banner.png"
-import logo from "@assets/Musicore Full.svg"
 
-import track_cover from "@assets/test_assets/Test track cover.png"
-import album_cover from "@assets/test_assets/Test album cover.png"
-import author_cover from "@assets/test_assets/Test author img.png"
-
-import "@css/ProfilePage.css"
-import "@css/Music.css"
-import { Link } from "react-router-dom"
+import "@style/ProfilePage.sass"
 import { useEffect, useState } from "react"
 import { invoke } from "@tauri-apps/api/core"
 
@@ -32,20 +25,22 @@ function ProfilePage() {
 
     let profile_string: string = profile ?? "Nickname"
     console.log(profile_string)
-    let nickname = JSON.parse(profile_string).nickname
+    let nickname
+    if (profile_string != "Nickname") {
+        nickname = JSON.parse(profile_string).nickname
+    } else {
+        nickname = profile_string
+    }
     console.log(nickname)
 
     return (
         <div className="profile">
-            <Link to="/">
-                <img src={logo} alt="" className="logo" />
-            </Link>
            <div className="header">
                 <img src={avatar} alt="" className="profile-avatar" />
                 <img src={banner} alt="" className="banner" />
                 <h1 className="nickname">{nickname}</h1>
            </div>
-           <div className="body">
+           {/* <div className="body">
                 <div className="recent">
                     <h1 className="recent-label">Недавнее:</h1>
                     <div className="track card">
@@ -63,7 +58,7 @@ function ProfilePage() {
                         <h3 className="author-name">Mzlff</h3>
                     </div>
                 </div>
-           </div>
+           </div> */}
         </div>
     )
 }

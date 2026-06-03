@@ -1,5 +1,4 @@
 import Search from "../components/Search";
-import "@css/MainPage.css"
 
 function MainPage() {
 

@@ -4,9 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
-import "./css/App.css"
 import PlayerPage from "./pages/PlayerPage";
 import Layout from "./Layout";
+import "@style/App.sass"
 
 const router = createBrowserRouter([
     {

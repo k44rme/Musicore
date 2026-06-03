@@ -1,0 +1,49 @@
+
+.close
+    width: 40px
+    height: 30px
+
+    appearance: none
+    background-color: rgba(0, 0, 0, 0)
+    border: none
+
+    position: absolute
+    right: 5px
+
+    &:hover
+        background-color: #f00
+        border: 1px solid #f00
+        transition: background .25s
+
+    &-btn 
+        cursor: pointer
+
+        &:hover
+            color: #fff
+
+.win-dec
+    position: absolute
+    user-select: none
+    width: 100%
+    height: 30px
+
+    z-index: 99999
+
+.minimize
+    border: none
+    appearance: none
+    background: rgba(0, 0, 0, 0)
+
+    position: absolute
+    right: 40px
+
+    width: 40px
+    height: 30px
+
+    &-btn:hover 
+        cursor: pointer
+
+    &:hover
+        border: 1px solid #bbb
+        background-color: #bbb
+        transition: background-color .25s

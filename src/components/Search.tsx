@@ -1,5 +1,5 @@
 import search from "@assets/icons/search_icon.svg";
-import "@css/Search.css";
+import "@style/Search.sass";
 import { useEffect, useState } from "react";
 
 export default function Search() {
