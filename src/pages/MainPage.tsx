@@ -1,11 +1,11 @@
-import Search from "../components/Search";
+
 
 function MainPage() {
 
     return (
-        <>
-            <Search/>
-        </>
+        <main>
+            
+        </main>
     )
 
 }

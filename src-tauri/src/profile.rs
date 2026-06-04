@@ -2,6 +2,7 @@ use std::fmt::Debug;
 
 use serde_json::{self, Value};
 use crate::config;
+use toml_edit;
 
 #[tauri::command]
 pub fn get_profile_info() -> String {
@@ -11,9 +12,7 @@ pub fn get_profile_info() -> String {
         .ok_or("No parent directory").unwrap()
         .to_path_buf();
 
-    println!("Config file was found");
     let _config = exe_dir.join("musicore.config.toml");
-    println!("File exists? {}", &_config.exists());
     let path;
 
     if !_config.exists() {
@@ -22,15 +21,12 @@ pub fn get_profile_info() -> String {
         path = _config.to_string_lossy().to_string();
     }
 
-    println!("Successfully converted to string: {}", &path.to_string());
-
     let content = std::fs::read_to_string(&path).expect("Failed to read file");
 
     let config: config::Config = toml::from_str(&content)
         .expect("Failed to parse TOML");
 
     let profile = config.profile;
-    println!("Profile got correctly");
     
     let profile = config::Profile {
         nickname: profile.nickname.to_string(),
@@ -40,7 +36,6 @@ pub fn get_profile_info() -> String {
 
     match serde_json::to_string(&profile) {
         Ok(res) => {
-            println!("{}", res.to_string());
             res
         },
         Err(err) => {
@@ -48,4 +43,25 @@ pub fn get_profile_info() -> String {
             std::process::exit(1);
         }
     }
+}
+
+#[test]
+pub fn edit_profile() {
+    let prop = "nickname".to_string();
+
+    let path = std::env::current_exe().expect("Cannot find a path")
+        .parent()
+        .unwrap()
+        .parent()
+        .unwrap()
+        .join("musicore.config.toml");
+    println!("{}", path.display());
+
+    if !path.exists() {
+        config::create_config();
+    }
+
+    let content = std::fs::read_to_string(path).unwrap();
+    let mut config: config::Config = toml::from_str(&content).expect("Failed to get the toml from string");
+
 }

@@ -28,6 +28,9 @@
     border-radius: 10px
     margin-left: 25px
 
+    &:hover
+        cursor: pointer
+
 
 .header 
     position: absolute
@@ -79,3 +82,30 @@
 
 .body 
     width: 100%;
+
+.nickname-edit
+    margin-top: 65px
+    z-index: 100
+
+    &-field
+        height: 50px
+        width: 250px
+        font:
+            size: 25px
+            family: 'Nunito', sans-serif
+            weight: bold
+
+        letter-spacing: 5%
+        border: none
+        padding-left: 10px
+        border-radius: 7px
+
+        &:focus
+            outline: none
+
+    &-btn
+        position: absolute
+        height: 50px
+        width: 50px
+        font-size: 20px
+        right: 30px

@@ -52,7 +52,8 @@
     ],
     "resources": [
       "../assets/*",
-      "../assets/icons/*.svg"
+      "../assets/icons/*.svg",
+      "../musicore.config.toml"
     ]
   }
 }

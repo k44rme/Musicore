@@ -13,8 +13,6 @@ function ProfilePage() {
             try {
                 const res = await invoke<string>("get_profile_info")
                 setProfile(res)
-                console.log(res)
-                console.log(profile)
             } catch (error) {
                 console.log(error);
             }
@@ -23,10 +21,10 @@ function ProfilePage() {
         loadProfile()
     })
 
-    let profile_string: string = profile ?? "Nickname"
+    let profile_string: string = profile ?? "Loading..."
     console.log(profile_string)
     let nickname
-    if (profile_string != "Nickname") {
+    if (profile_string != "Loading...") {
         nickname = JSON.parse(profile_string).nickname
     } else {
         nickname = profile_string
@@ -38,7 +36,19 @@ function ProfilePage() {
            <div className="header">
                 <img src={avatar} alt="" className="profile-avatar" />
                 <img src={banner} alt="" className="banner" />
-                <h1 className="nickname">{nickname}</h1>
+                <h1 className="nickname" onClick={() => {
+                    let newEl = document.createElement("from")
+                    newEl.classList.add("nickname-edit")
+                    let input = document.createElement("input")
+                    input.classList.add("nickname-edit-field")
+                    input.placeholder = "New nickname"
+                    let submit_btn = document.createElement("button")
+                    submit_btn.classList.add("nickname-edit-btn")
+                    submit_btn.innerText = "OK"
+                    newEl.appendChild(input)
+                    newEl.appendChild(submit_btn)
+                    document.querySelector(".nickname")?.replaceWith(newEl)
+                }}>{nickname}</h1>
            </div>
            {/* <div className="body">
                 <div className="recent">

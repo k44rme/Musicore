@@ -4,6 +4,6 @@ music_path = ""
 [profile]
 avatar = "assets/profile" # Path to avatar
 banner = "assets/profile" # Path to banner
-nickname = "Musicore-user" # Replace this string to your nichname
+nickname = "user" # Replace this string to your nichname
 
 

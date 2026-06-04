@@ -21,20 +21,15 @@ pub struct Profile {
 // Functions starts here 
 #[tauri::command]
 pub fn create_config() -> String {
-  let path = std::env::current_dir().unwrap();
-  let content = r#"
-      music_path = ''
+    let path = std::env::current_exe().unwrap();
+    let config = path.join("musicore.config.toml");
+    let content = fs::read_to_string(config).expect("Cannot get config content");
 
-      [profile]
-      avatar = 'assets/profile' # Path to avatar
-      banner = 'assets/profile' # Path to banner
-      nickname = 'Musicore-user' # Replace this string to your nichname
+    let file_name = format!("{}/{}", path.to_string_lossy().to_string(), "musicore.config.toml");
+    fs::write(&file_name, &content);
 
-      "#;
-
-  let file_name = format!("{}/{}", path.to_string_lossy().to_string(), "musicore.config.toml");
-  fs::write(&file_name, content);
-  file_name
+    println!("Writed config file with content: {}", content);
+    file_name
 }
 
 #[tauri::command]
@@ -42,8 +37,6 @@ pub fn edit_music_path(new_music_path: &str) -> Result<(), String> {
     // Get executable directory
     let exe_dir = std::env::current_exe()
         .map_err(|e| format!("Failed to get executable path: {}", e)).unwrap()
-        .parent()
-        .ok_or("No parent directory").unwrap()
         .to_path_buf();
     
     let config_path = exe_dir.join("musicore.config.toml");
@@ -103,3 +96,4 @@ pub fn read_config() -> Result<String, std::string::String> {
 
     serde_json::to_string(&config).map_err(|e| e.to_string())
 }
+
