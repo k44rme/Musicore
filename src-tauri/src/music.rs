@@ -5,6 +5,7 @@ use std::{fs};
 use id3::{Tag, TagLike};
 use serde_json;
 use base64::prelude::*;
+use tauri::{Manager, Url};
 
 #[tauri::command]
 pub fn get_music_files(music_path: &str) -> Result<std::string::String, String>  {
@@ -54,7 +55,8 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
                 artist: artist.to_string(),
                 duration: dur.to_string(),
                 image: img,
-                path: path
+                path: path.clone(),
+                converted: convert_file_src(&path).unwrap()
             };
 
             files.push(song);
@@ -65,6 +67,19 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
     serde_json::to_string(&files).map_err(|e| e.to_string())
 }
 
+fn convert_file_src(path: &str) -> Result<String, String> {
+    // Normalize the path (handle Windows backslashes)
+    let normalized = path.replace('\\', "/");
+    
+    // Create a file:// URL
+    let url = format!("https://asset.localhost/{}", normalized.trim_start_matches('/'));
+    
+    // Validate it's a proper URL
+    Url::parse(&url)
+        .map(|_| url)
+        .map_err(|e| format!("Invalid path: {}", e))
+}
+
 #[derive(serde::Serialize)]
 pub struct MusicFile {
     id: String,
@@ -73,5 +88,15 @@ pub struct MusicFile {
     artist: String,
     duration: String,
     image: String,
-    path: String
+    path: String,
+    converted: String
+}
+
+mod tests {
+    use crate::music::get_music_files;
+
+    #[test]
+    fn test_music_files() {
+        println!("{:#?}", get_music_files("C:/Users/K44rm/Music"))
+    }
 }

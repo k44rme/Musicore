@@ -15,7 +15,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             music::get_music_files, 
             config::read_config, config::edit_music_path, config::create_config,
-            profile::get_profile_info,
+            profile::get_profile_info, profile::edit_profile
             /* cache::create_cache */
         ])
         .run(tauri::generate_context!())

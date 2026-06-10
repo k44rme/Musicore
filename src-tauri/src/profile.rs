@@ -1,8 +1,8 @@
-use std::fmt::Debug;
+use std::{fmt::Debug, fs};
 
 use serde_json::{self, Value};
 use crate::config;
-use toml_edit;
+use toml_edit::{self, DocumentMut};
 
 #[tauri::command]
 pub fn get_profile_info() -> String {
@@ -45,23 +45,31 @@ pub fn get_profile_info() -> String {
     }
 }
 
-#[test]
-pub fn edit_profile() {
-    let prop = "nickname".to_string();
-
-    let path = std::env::current_exe().expect("Cannot find a path")
-        .parent()
-        .unwrap()
+#[tauri::command]
+pub fn edit_profile(prop: String, val: &str) {
+    let path = std::env::current_exe().unwrap()
         .parent()
         .unwrap()
         .join("musicore.config.toml");
-    println!("{}", path.display());
 
     if !path.exists() {
         config::create_config();
     }
 
-    let content = std::fs::read_to_string(path).unwrap();
-    let mut config: config::Config = toml::from_str(&content).expect("Failed to get the toml from string");
+    let content = std::fs::read_to_string(&path).unwrap();
+    let mut doc = content.parse::<DocumentMut>().expect("Failed to parse file content");
+
+    if prop == "nickname" {
+        doc["profile"]["nickname"] = val.into()
+    } else if prop == "avatar" {
+        doc["profile"]["avatar"] = val.into();
+    } else if prop == "banner" {
+        doc["profile"]["banner"] = val.into();
+    } else {
+        eprint!("Failed to find specific prop");
+    }
+
+    std::fs::write(path, doc.to_string())
+        .map_err(|err| eprint!("Failed to write data: {}", err));
 
 }

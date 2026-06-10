@@ -1,12 +1,13 @@
 import avatar from "@assets/test_assets/k44rme.jpg"
 import banner from "@assets/test_assets/k44rme_banner.png"
 
-import "@style/ProfilePage.sass"
+import "@style/pages/ProfilePage.sass"
 import { useEffect, useState } from "react"
 import { invoke } from "@tauri-apps/api/core"
 
 function ProfilePage() {
     const [profile, setProfile] = useState<string>()
+    const [name, setName] = useState<string>()
 
     useEffect(() => {
         const loadProfile = async () => {
@@ -21,6 +22,18 @@ function ProfilePage() {
         loadProfile()
     })
 
+    function edit_profile_name() {
+        const editProfileName = async () => {
+            try {
+                await invoke("edit_profile", { prop: "nickname", val: name ?? "Nickname" })
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        editProfileName()
+    }
+
     let profile_string: string = profile ?? "Loading..."
     console.log(profile_string)
     let nickname
@@ -32,23 +45,23 @@ function ProfilePage() {
     console.log(nickname)
 
     return (
-        <div className="profile">
+        <main className="profile">
            <div className="header">
                 <img src={avatar} alt="" className="profile-avatar" />
                 <img src={banner} alt="" className="banner" />
-                <h1 className="nickname" onClick={() => {
-                    let newEl = document.createElement("from")
-                    newEl.classList.add("nickname-edit")
-                    let input = document.createElement("input")
-                    input.classList.add("nickname-edit-field")
-                    input.placeholder = "New nickname"
-                    let submit_btn = document.createElement("button")
-                    submit_btn.classList.add("nickname-edit-btn")
-                    submit_btn.innerText = "OK"
-                    newEl.appendChild(input)
-                    newEl.appendChild(submit_btn)
-                    document.querySelector(".nickname")?.replaceWith(newEl)
+                <h1 className="nickname" onClick={(e) => {
+                    e.preventDefault()
+                    document.querySelector(".nickname")?.classList.toggle('hide')
+                    document.querySelector(".nickname-edit")?.classList.toggle('hide')
                 }}>{nickname}</h1>
+                <form className="nickname-edit hide">
+                    <input type="text" className="nickname-edit-field" value={name} onChange={(e) => { setName(e.target.value) }}/>
+                    <button type="submit" className="nickname-edit-btn" onClick={(e) => {
+                        e.preventDefault()
+                        edit_profile_name()
+                        window.location.reload()
+                    }}>OK</button>
+                </form>
            </div>
            {/* <div className="body">
                 <div className="recent">
@@ -69,7 +82,7 @@ function ProfilePage() {
                     </div>
                 </div>
            </div> */}
-        </div>
+        </main>
     )
 }
 

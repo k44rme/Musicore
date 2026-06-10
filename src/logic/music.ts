@@ -10,23 +10,9 @@ function music() {
   useEffect(() => {
     const cancelled = false
 
-    const createConfig = async () => {
-      try {
-        const res = await invoke<string>("create_config")
-        setConfig(JSON.parse(res))
-        console.log("Config created");
-        
-      } catch (e) {
-        console.log(e);
-      }
-    }
-
     const loadConfig = async () => {
       try {
         const res = await invoke<string>("read_config")
-        if (res == "err") {
-          createConfig()
-        }
         if(!cancelled && res != "err") setConfig(JSON.parse(res))
         console.log("Config was found");
         
@@ -38,20 +24,20 @@ function music() {
     loadConfig();
     setReady(true)
   }, []);
+
+  console.log("Config:", config);
   
   useEffect(() => {
     if (!ready || !config) return;
 
     const loadMusic = async () => {
       try {
-        if (config.music_path != "") {
-          const result = await invoke<string>("get_music_files", { 
-            musicPath: config?.music_path,
-          });
-          setMusic(JSON.parse(result));
-          console.log("Music loaded");
-          
-        }
+        const music_path = config.music_path ?? ""
+        const result = await invoke<string>("get_music_files", { 
+          musicPath: music_path,
+        });
+        setMusic(JSON.parse(result));
+        console.log("Music loaded");
       } catch (err) {
         console.error("Failed to load music:", err);
       }
@@ -59,6 +45,8 @@ function music() {
     
     loadMusic();
   }, [ready, config])
+
+  console.log("Music:", music);
 
   return {
     config: config,

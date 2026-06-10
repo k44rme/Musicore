@@ -1,4 +1,4 @@
-@use "Variables"
+@use "./Variables" as *
 
 ::-webkit-scrollbar
     height: 5px
@@ -15,7 +15,8 @@
         transition: .1s background-color
 
 .app main
-    overflow: none
+    position: absolute
+    width: 69vw
 
 *
     margin: 0

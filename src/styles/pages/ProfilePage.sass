@@ -1,6 +1,13 @@
+@use '../Variables' as *
+    
 .profile 
-    user-select: none;
-    width: 500px;
+    user-select: none
+    width: 70dvw
+    height: 100%
+    position: absolute
+    left: 50vw
+    margin-left: 275px
+    transform: translateX(-50vw)
 
     &-avatar 
         width: 100px;
@@ -41,9 +48,6 @@
     justify-content: center;
     align-items: center;
 
-    margin:
-        left: 300px;
-        top: 0%;
     overflow: hidden;
 
 
@@ -98,7 +102,8 @@
         letter-spacing: 5%
         border: none
         padding-left: 10px
-        border-radius: 7px
+        border: 5px solid $main
+            radius: 7px
 
         &:focus
             outline: none
@@ -108,4 +113,17 @@
         height: 50px
         width: 50px
         font-size: 20px
-        right: 30px
+        right: 35px
+
+        border: none
+        background-color: $invise
+
+        background-color: $main
+        border: 5px solid $main
+            radius: 7px
+
+        color: #fff
+
+.hide
+    display: none
+    

@@ -5,13 +5,11 @@ import WindowDecoration from "./components/WindowDecoration";
 function Layout() {
     return ( 
         <>
+            <WindowDecoration />
             <div className="app">
                 <SidePanel />
-                <main>
-                    <Outlet />
-                </main>
+                <Outlet />
             </div>
-            <WindowDecoration />
         </>
      );
 }

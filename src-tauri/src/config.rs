@@ -22,7 +22,13 @@ pub struct Profile {
 #[tauri::command]
 pub fn create_config() -> String {
     let path = std::env::current_exe().unwrap();
-    let config = path.join("musicore.config.toml");
+    let config = path
+        .parent()
+        .unwrap()
+        .join("musicore.config.toml");
+
+    println!("path: {}", config.display());
+
     let content = fs::read_to_string(config).expect("Cannot get config content");
 
     let file_name = format!("{}/{}", path.to_string_lossy().to_string(), "musicore.config.toml");
@@ -30,6 +36,11 @@ pub fn create_config() -> String {
 
     println!("Writed config file with content: {}", content);
     file_name
+}
+
+#[test]
+fn test() {
+    create_config();
 }
 
 #[tauri::command]

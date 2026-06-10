@@ -1,16 +1,18 @@
 @use './Variables' as *
     
 .side-panel
-    height: calc( 100% + .6em ) 
+    height: calc(100dvh + 1em)
     width: 235px 
-    position: absolute 
+    position: fixed
     background-color: #eee 
     margin: 0 
     padding: 0 
     box-sizing: border-box 
     margin:
         left: -10px 
-        top: -10px 
+        top: -10px
+
+    user-select: none 
 
 .sidepanel-profile
     position: absolute 
@@ -40,12 +42,20 @@
         size: 20px 
         family: 'Nunito', sans-serif
         style: normal 
-    margin:
-        bottom: 14px 
-        left: 50px
+
+    margin-bottom: 14px 
+    padding-left: 50px
+
     list-style: none
         position: inside 
+
     letter-spacing: 0.15em 
+    padding: 
+        bottom: 5px
+        top: 5px
+
+    transition: background-color .1s
+    border-radius: 17px
 
     &-label
         text-decoration: none
@@ -59,6 +69,12 @@
         font-size: 20px 
         transform: translateY(2px)
         margin-right: 7px
+
+    &:hover
+        background-color: $secondary
+
+.active
+    background-color: $main
 
 .menu-item
     &-1::before
@@ -76,14 +92,16 @@
 .sidepanel-playlist
     &-label
         margin-left: 20px 
-        letter-spacing: .15em 
+        letter-spacing: .05em 
 
     &-item
         list-style-type: none
         letter-spacing: 5%
+
         font:
             size: 20px
             family: 'Nunito', sans-serif 
+
         margin:
             top: 10px
             left: 50px
@@ -109,6 +127,9 @@
         weight: bold
 
     color: #000
-
     letter-spacing: 5%
+
+    &:hover
+        color: $accent
+        transition: color .1s
 

@@ -1,5 +1,4 @@
 import { invoke } from "@tauri-apps/api/core";
-import "@css/MainPage-music.css";
 import { Link } from "react-router-dom";
 import "../structs"
 import { MusicFile } from "../structs";
@@ -14,7 +13,7 @@ function Music() {
   let music: MusicFile[] = mus.music
 
   let music_path: String = config?.music_path ?? ""
-  console.log(music_path);
+  console.log("music path:", music_path);
 
   if (music_path == "") {
     console.log("The from");

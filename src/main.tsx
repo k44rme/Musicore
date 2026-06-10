@@ -1,11 +1,12 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ProfilePage from "./pages/ProfilePage";
-import MainPage from "./pages/MainPage";
-import SearchPage from "./pages/SearchPage";
-import PlayerPage from "./pages/PlayerPage";
+import ProfilePage from "./pages/Profile";
+import MainPage from "./pages/Main";
+import SearchPage from "./pages/Search";
+import PlayerPage from "./pages/Player";
 import Layout from "./Layout";
 import "@style/App.sass"
+import Library from "./pages/Library";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
         { path: "/search", element: <SearchPage /> },
         { path: "/play/:song-id", element: <PlayerPage /> },
         { path: "/discover", element: <></> },
-        { path: "/library", element: <></> },
+        { path: "/library", element: <Library /> },
         { path: "/playlist/:playlist", element: <></> }
       ]
     },
