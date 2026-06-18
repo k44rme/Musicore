@@ -1,19 +1,19 @@
 import "@style/SidePanel.sass"
-import Musicore from "@assets/Logo.svg"
 import { Link, useMatch } from "react-router-dom";
 import avatar from "@assets/test_assets/k44rme.jpg"
 import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
+import Icon from "./Icon";
 
 function SidePanel() {
     const [profile, setProfile] = useState("")
     const [ready, setReady] = useState(false)
 
     const menuItems = [
-        {id: 1, label: "Главная", path: "/", active: useMatch("/")},
-        {id: 2, label: "Поиск", path: "/search", active: useMatch("/search")},
-        {id: 3, label: "Discover", path: "/discover", active: useMatch("/discover")},
-        {id: 4, label: "Библиотека", path: "/library", active: useMatch("/library")}
+        {id: 1, label: "Главная", path: "/", active: useMatch("/"), icon: "home"},
+        {id: 2, label: "Поиск", path: "/search", active: useMatch("/search"), icon: "search"},
+        {id: 3, label: "Discover", path: "/discover", active: useMatch("/discover"), icon: "discover"},
+        {id: 4, label: "Библиотека", path: "/library", active: useMatch("/library"), icon: "library"}
     ]
 
     let playlists = [
@@ -53,19 +53,25 @@ function SidePanel() {
 
     return ( 
         <div className="side-panel">
-            <img src={Musicore} alt="" className="logo" />
+            <Icon icon="Logo" className="logo" />
             <h2 className="menu-label">Menu</h2>
             <ul className="menu">
                 {
                     menuItems.map((item: any) => {
                         let className;
+                        let icon_fill;
                         if (item.active) {
                             className = `menu-item menu-item-${item.id} active`
                         } else {
                             className = `menu-item menu-item-${item.id}`
                         }
+
+                        if (item.icon == "library" || item.icon == "discover") {
+                            icon_fill = "fill"
+                        }
                         return (
                             <li className={className} key={item.id}>
+                                <Icon icon={item.icon} className={`${item.icon}-icon icon ${icon_fill}`} />
                                 <Link to={item.path} className="menu-item-label">{item.label}</Link>
                             </li>
                         )

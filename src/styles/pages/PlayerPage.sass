@@ -1,0 +1,67 @@
+@use '../Variables' as *
+
+.player--page
+    width: 70dvw
+    position: absolute
+    left: 250px
+
+.player-cover
+    width: 250px
+    height: 250px
+    background-color: $accent
+    border-radius: 17px
+    display: flex
+    justify-content: center
+    align-items: center
+
+    &-icon 
+        width: 150px
+        height: 150px
+        stroke: $white--secondary
+
+    margin: 25px auto
+
+.player-song-name
+    text-align: center
+
+.control-btn
+    @include reset-btn()
+    width: 40px
+    height: 40px
+    margin: 0 auto
+
+    cursor: pointer
+
+.control-btns
+    width: 150px
+    margin: 0 auto
+    padding: 15px 0px
+
+.previous-btn
+    float: left
+
+.play-btn
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+
+.next-btn
+    float: right
+
+.duration-controller
+    width: 45dvw
+    margin: 0 auto
+
+    &-range 
+        width: 75%
+        padding: 15px 0px
+        accent-color: $accent
+        color: $main
+        border: 
+            bottom-color: $main
+            left-color: $main
+
+        &:focus
+            accent-color: $accent
+
+    

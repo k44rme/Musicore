@@ -14,9 +14,9 @@
       {
         "title": "Musicore",
         "width": 900,
-        "height": 600,
+        "height": 640,
         "decorations": false,
-        "minWidth": 360,
+        "minWidth": 900,
         "minHeight": 640
       }
     ],

@@ -1,4 +1,4 @@
-// This file contains only structers of toml file
+// This file contains only structures of toml file
 use serde::{Deserialize, Serialize};
 use toml_edit::DocumentMut;
 use std::fs;
@@ -15,7 +15,7 @@ pub struct Config {
 pub struct Profile {
     pub avatar: String,  // Path to avatar
     pub banner: String,  // Path to banner
-    pub nickname: String,  // User nickanme
+    pub nickname: String,  // User nickname
 }
 
 // Functions starts here 
@@ -34,7 +34,7 @@ pub fn create_config() -> String {
     let file_name = format!("{}/{}", path.to_string_lossy().to_string(), "musicore.config.toml");
     fs::write(&file_name, &content);
 
-    println!("Writed config file with content: {}", content);
+    println!("Wrote config file with content: {}", content);
     file_name
 }
 

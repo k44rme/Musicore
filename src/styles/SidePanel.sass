@@ -1,74 +1,97 @@
 @use './Variables' as *
-    
+
 .side-panel
     height: calc(100dvh + 1em)
-    width: 235px 
+    width: 235px
     position: fixed
-    background-color: #eee 
-    margin: 0 
-    padding: 0 
-    box-sizing: border-box 
+    background-color: $bg--secondary
+    margin: 0
+    padding: 0
+    box-sizing: border-box
     margin:
-        left: -10px 
+        left: -10px
         top: -10px
 
-    user-select: none 
+    user-select: none
+    color: $yellow--primary
+
+    &-home-icon &-search-icon
+        stroke: $yellow--primary
+
+    &-discover-icon &-library-icon
+        fill: $yellow--primary
 
 .sidepanel-profile
-    position: absolute 
-    bottom: 1% 
-    left: 30px 
-    background-color: #fff 
-    width: 80% 
-    padding: 5px 10px 
-    border-radius: 10px 
+    position: absolute
+    bottom: 1%
+    left: 30px
+    background-color: $white--secondary
+    border: 3px solid $white--primary
+    width: 80%
+    height: 70px
+    padding: 5px 10px
+    border-radius: 10px
+    margin-bottom: 5px
 
 .logo
-    width: 150px 
-    height: 52px 
+    width: 150px
+    height: 52px
     margin:
-        top: 25px 
-        left: 33px 
+        top: 25px
+        left: 33px
+
+    fill: $secondary
 
 .menu-label
     margin:
-        left: 20px 
+        left: 20px
         top: 10px
         bottom: 10px
-    letter-spacing: .15em 
+    letter-spacing: .15em
 
 .menu-item
     font:
-        size: 20px 
+        size: 20px
         family: 'Nunito', sans-serif
-        style: normal 
+        style: normal
 
-    margin-bottom: 14px 
+    margin-bottom: 14px
     padding-left: 50px
 
     list-style: none
-        position: inside 
+        position: inside
 
-    letter-spacing: 0.15em 
-    padding: 
+    letter-spacing: 0.15em
+    padding:
         bottom: 5px
         top: 5px
 
     transition: background-color .1s
     border-radius: 17px
+    padding-bottom: 3px
 
     &-label
         text-decoration: none
-        color: #000
-        
+        color: $yellow--secondary !important
+
+        position: fixed
+        left: 70px
+
         &:visited
-            color: #000
+            color: $black--primary
+
+        &:hover
+            color: #fff !important
 
     &::before
-        display: inline-block 
-        font-size: 20px 
+        display: inline-block
+        font-size: 20px
         transform: translateY(2px)
         margin-right: 7px
+        color: $yellow--primary
+
+    &::before:hover
+        color: #fff !important
 
     &:hover
         background-color: $secondary
@@ -76,23 +99,17 @@
 .active
     background-color: $main
 
-.menu-item
-    &-1::before
-        content: url('@assets/icons/Sidepanel/Home.svg')
-    
-    &-2::before
-        content: url('@assets/icons/Sidepanel/Search.svg')
+.icon
+    color: $yellow--primary
+    stroke: $yellow--primary
 
-    &-3::before
-        content: url('@assets/icons/Sidepanel/Discover.svg')
-
-    &-4::before
-        content: url('@assets/icons/Sidepanel/Library.svg')
+    &-fill
+        fill: $yellow--primary
 
 .sidepanel-playlist
     &-label
-        margin-left: 20px 
-        letter-spacing: .05em 
+        margin-left: 20px
+        letter-spacing: .05em
 
     &-item
         list-style-type: none
@@ -100,36 +117,34 @@
 
         font:
             size: 20px
-            family: 'Nunito', sans-serif 
+            family: 'Nunito', sans-serif
 
         margin:
             top: 10px
             left: 50px
 
         a
-            text-decoration: none 
-            color: #000 
-
+            text-decoration: none
+            color: $yellow--primary
 
 .sidepanel-avatar
-    width: 50px 
-    border-radius: 50% 
-    transform: translateY(10%) 
+    width: 50px
+    border-radius: 50%
+    transform: translateY(10%)
 
 .sidepanel-username
-    position: absolute 
-    left: 35% 
-    top: 50% 
-    transform: translateY(-50%) 
+    position: absolute
+    left: 35%
+    top: 50%
+    transform: translateY(-50%)
 
     font:
         size: 17px
         weight: bold
 
-    color: #000
+    color: $black--primary
     letter-spacing: 5%
 
     &:hover
         color: $accent
         transition: color .1s
-

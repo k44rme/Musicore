@@ -22,7 +22,7 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
 
         if x && file_name.ends_with(".mp3") {
             let id = rand::random::<u8>();
-            let id = format!("{:04}", id);
+            let id = format!("{:17}", id);
             let path = format!("{}/{}", music_path, file_name);
             let tag = Tag::read_from_path(&path).unwrap();
             let title = tag.title().unwrap().to_string();
@@ -54,9 +54,9 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
                 title: title.to_string(),
                 artist: artist.to_string(),
                 duration: dur.to_string(),
+                durationNum: secs,
                 image: img,
-                path: path.clone(),
-                converted: convert_file_src(&path).unwrap()
+                path: path.clone()
             };
 
             files.push(song);
@@ -67,19 +67,6 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
     serde_json::to_string(&files).map_err(|e| e.to_string())
 }
 
-fn convert_file_src(path: &str) -> Result<String, String> {
-    // Normalize the path (handle Windows backslashes)
-    let normalized = path.replace('\\', "/");
-    
-    // Create a file:// URL
-    let url = format!("https://asset.localhost/{}", normalized.trim_start_matches('/'));
-    
-    // Validate it's a proper URL
-    Url::parse(&url)
-        .map(|_| url)
-        .map_err(|e| format!("Invalid path: {}", e))
-}
-
 #[derive(serde::Serialize)]
 pub struct MusicFile {
     id: String,
@@ -87,9 +74,9 @@ pub struct MusicFile {
     title: String,
     artist: String,
     duration: String,
+    durationNum: u64,
     image: String,
-    path: String,
-    converted: String
+    path: String
 }
 
 mod tests {

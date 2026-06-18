@@ -12,7 +12,7 @@ function player() {
   const location = useLocation();
   const song = location.state as Player | undefined;
   const [config, setConfig] = useState<Config | null>(null);
-  const [_, setReady] = useState(false);
+  const [ready, setReady] = useState(false);
 
   const file = song?.file[song.index]
 
@@ -93,7 +93,8 @@ function player() {
     init: initialize_song,
     actions: audio_actions,
     song: song,
-    file: file
+    file: file,
+    ready: ready
   }
 }
 
