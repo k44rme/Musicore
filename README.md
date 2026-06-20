@@ -1,5 +1,5 @@
 <p align="center"> 
-  <img src="https://raw.githubusercontent.com/k44rme/Musicore/76b1361feee219e99a037f246f5d2de14ea67dc0/assets/Logo.svg" width="500">
+  <img src="https://raw.githubusercontent.com/k44rme/Musicore/2713ab1d9547158474ff0fa8c7a22d6d285d4890/assets/Logo.svg" width="500">
 </p>
 
 # Musicore
