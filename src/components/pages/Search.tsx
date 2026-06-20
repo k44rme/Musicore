@@ -1,4 +1,4 @@
-import Search from "../components/Search"
+import Search from "../Search"
 import "@style/pages/SearchPage.sass"
 
 function SearchPage() {

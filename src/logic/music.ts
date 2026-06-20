@@ -3,55 +3,60 @@ import { useEffect, useState } from "react";
 import { MusicFile, Config } from "../structs";
 
 function music() {
-  const [music, setMusic] = useState<MusicFile[]>([]);
-  const [config, setConfig] = useState<Config>();
-  const [ready, setReady] = useState(false);
+	const [music, setMusic] = useState<MusicFile[]>([]);
+	const [config, setConfig] = useState<Config>();
+	const [ready, setReady] = useState(false);
+	const [err, setErr] = useState("");
 
-  useEffect(() => {
-    const cancelled = false
+	useEffect(() => {
+		const cancelled = false;
 
-    const loadConfig = async () => {
-      try {
-        const res = await invoke<string>("read_config")
-        if(!cancelled && res != "err") setConfig(JSON.parse(res))
-        console.log("Config was found");
-        
-      } catch (e) {
-        console.log(e)
-      }
-    }
+		const loadConfig = async () => {
+			try {
+				const res = await invoke<string>("read_config");
+				if (!cancelled && res != "err") setConfig(JSON.parse(res));
+				console.log("Config was found");
+			} catch (e) {
+				console.log(e);
+			}
+		};
 
-    loadConfig();
-    setReady(true)
-  }, []);
+		loadConfig();
+		setReady(true);
+	}, []);
 
-  console.log("Config:", config);
-  
-  useEffect(() => {
-    if (!ready || !config) return;
+	console.log("Config:", config);
 
-    const loadMusic = async () => {
-      try {
-        const music_path = config.music_path ?? ""
-        const result = await invoke<string>("get_music_files", { 
-          musicPath: music_path,
-        });
-        setMusic(JSON.parse(result));
-        console.log("Music loaded");
-      } catch (err) {
-        console.error("Failed to load music:", err);
-      }
-    };
-    
-    loadMusic();
-  }, [ready, config])
+	let music_path;
+	useEffect(() => {
+		if (!ready || !config) return;
 
-  console.log("Music:", music);
+		const loadMusic = async () => {
+			try {
+				const music_path = config.music_path;
+				const result = await invoke<string>("get_music_files", {
+					musicPath: music_path,
+				});
+				setMusic(JSON.parse(result));
+				console.log("Music loaded");
+			} catch (err) {
+				console.error("Failed to load music:", err);
+				setErr("Failed to load music");
+				console.log(err);
+			}
+		};
 
-  return {
-    config: config,
-    music: music
-  }
+		loadMusic();
+	}, [ready, config]);
+
+	console.log("Music:", music);
+
+	return {
+		config: config,
+		music: music,
+		music_path: music_path,
+		err: err,
+	};
 }
 
 export default music;

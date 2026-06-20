@@ -1,12 +1,12 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ProfilePage from "./pages/Profile";
-import MainPage from "./pages/Main";
-import SearchPage from "./pages/Search";
-import PlayerPage from "./pages/Player";
+import ProfilePage from "./components/pages/Profile";
+import MainPage from "./components/pages/Main";
+import SearchPage from "./components/pages/Search";
+import PlayerPage from "./components/pages/Player";
 import Layout from "./Layout";
 import "@style/App.sass"
-import Library from "./pages/Library";
+import Library from "./components/pages/Library";
 
 const router = createBrowserRouter([
     {

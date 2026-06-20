@@ -8,18 +8,24 @@
 .player-cover
     width: 250px
     height: 250px
-    background-color: $accent
     border-radius: 17px
-    display: flex
-    justify-content: center
-    align-items: center
 
-    &-icon 
+    &-icon
         width: 150px
         height: 150px
         stroke: $white--secondary
 
-    margin: 25px auto
+    position: relative 
+    left: 40%
+    transform: translateX(-40%)
+    margin: 25px
+
+.non-cover
+    background-color: $accent
+    display: flex
+    justify-content: center
+    align-items: center
+
 
 .player-song-name
     text-align: center
@@ -31,6 +37,7 @@
     margin: 0 auto
 
     cursor: pointer
+    font-family: 'Nunito', sans-serif
 
 .control-btns
     width: 150px
@@ -50,18 +57,28 @@
 
 .duration-controller
     width: 45dvw
-    margin: 0 auto
+    position: relative 
+    left: 60%
+    transform: translateX(-60%)
 
-    &-range 
+    &-range
         width: 75%
         padding: 15px 0px
         accent-color: $accent
         color: $main
-        border: 
+        border:
             bottom-color: $main
             left-color: $main
 
         &:focus
             accent-color: $accent
 
-    
+.duration-label
+    position: relative
+    bottom: 17px
+
+.current-duration
+    right: 5%
+
+.total-duration
+    left: 5%

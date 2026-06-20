@@ -14,61 +14,55 @@ function Music() {
 	let config = mus.config;
 	let music: MusicFile[] = mus.music;
 
-	let music_path: String = config?.music_path ?? "";
-	console.log("music path:", music_path);
+	let music_path: String = config?.music_path ?? mus.music_path ?? "";
 
-	if (music_path == "") {
+	if (music_path == "" || mus.err == "Fail") {
 		console.log("The from");
-		setTimeout(() => {
-			return (
-				<div
-					style={{
-						position: "absolute",
-						left: "50%",
-						transform: "translateX(-50%)",
-						top: "300px",
-					}}
-				>
-					<p style={{ textAlign: "center" }}>
-						Путь до вашей папки c музыкой?
-					</p>
-					<form className="find-music">
-						<input
-							type="text"
-							name="music"
-							id="set-music-path"
-							value={path}
-							placeholder="C:/Users/...."
-							onChange={(
-								e: React.ChangeEvent<HTMLInputElement>,
-							) => {
-								setPath(e.target.value);
-							}}
-						/>
-						<button
-							type="submit"
-							onClick={(e) => {
-								e.preventDefault();
-								const newMusicPath = async () => {
-									try {
-										await invoke("edit_music_path", {
-											newMusicPath: path,
-										});
-										window.location.reload();
-									} catch (error) {
-										console.error(error);
-									}
-								};
-
-								newMusicPath();
-							}}
-						>
-							OK
-						</button>
-					</form>
-				</div>
-			);
-		}, 1000);
+		return (
+			<div
+				style={{
+					position: "absolute",
+					left: "50%",
+					transform: "translateX(-50%)",
+					top: "300px",
+				}}
+			>
+				<span style={{ textAlign: "center" }}>
+					Путь до вашей папки c музыкой?
+				</span>
+				<form className="find-music">
+					<input
+						type="text"
+						name="music"
+						id="set-music-path"
+						value={path}
+						placeholder="C:/Users/...."
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+							setPath(e.target.value);
+						}}
+					/>
+					<button
+						type="submit"
+						onClick={(e) => {
+							e.preventDefault();
+							const newMusicPath = async () => {
+								try {
+									await invoke("edit_music_path", {
+										newMusicPath: path,
+									});
+									window.location.reload();
+								} catch (error) {
+									console.error(error);
+								}
+							};
+							newMusicPath();
+						}}
+					>
+						OK
+					</button>
+				</form>
+			</div>
+		);
 	} else if (music_path != "") {
 		console.log("Config found, music loading...");
 
@@ -110,7 +104,9 @@ function Music() {
 								<p className="song-artist">{file.artist}</p>
 							</div>
 							<div className="song-duration">
-								<span className="song-duration-label">{file.duration}</span>
+								<span className="song-duration-label">
+									{file.duration}
+								</span>
 							</div>
 						</Link>
 					);

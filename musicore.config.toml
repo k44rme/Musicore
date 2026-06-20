@@ -1,10 +1,10 @@
 
-music_path = "C:/Users/k44rm/Music"
+music_path = ""
 
 [profile]
 avatar = "assets/profile" # Path to avatar
 banner = "assets/profile" # Path to banner
-nickname = "k44rme" # Replace this string to your nichname
+nickname = "k44rme" # Replace this string to your nickname
 
 [playlists]
 favorites.icon = ""

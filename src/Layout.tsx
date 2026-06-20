@@ -6,10 +6,10 @@ function Layout() {
     return ( 
         <>
             <WindowDecoration />
-            <div className="app">
+            <>
                 <SidePanel />
                 <Outlet />
-            </div>
+            </>
         </>
      );
 }

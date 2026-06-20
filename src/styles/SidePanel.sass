@@ -80,21 +80,12 @@
         &:visited
             color: $black--primary
 
-        &:hover
-            color: #fff !important
-
-    &::before
-        display: inline-block
-        font-size: 20px
-        transform: translateY(2px)
-        margin-right: 7px
-        color: $yellow--primary
-
-    &::before:hover
+    &:hover &-label, .sidepanel--icon
         color: #fff !important
 
     &:hover
         background-color: $secondary
+        cursor: pointer
 
 .active
     background-color: $main
@@ -105,6 +96,13 @@
 
     &-fill
         fill: $yellow--primary
+
+    .menu-item:hover & 
+        color: $white--secondary
+        stroke: $white--secondary
+
+        &-fill 
+            fill: $white--primary
 
 .sidepanel-playlist
     &-label

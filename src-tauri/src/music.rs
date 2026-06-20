@@ -1,7 +1,7 @@
 // Thanks a lot to syedhussim who can help me with code
 // Original code: https://github.com/syedhussim/music-player-app/blob/main/src/main.rs
 
-use std::{fs};
+use std::fs;
 use id3::{Tag, TagLike};
 use serde_json;
 use base64::prelude::*;
@@ -12,7 +12,11 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
 
     let path = String::from(music_path);
     let mut files: Vec<MusicFile> = Vec::new();
-    let _dir = fs::read_dir(&path).unwrap();
+
+    let _dir = match fs::read_dir(&path) {
+        Ok(v) => v,
+        Err(_) => return Err("Fail".to_string())
+    };
 
     for i in _dir {
 
@@ -22,7 +26,7 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
 
         if x && file_name.ends_with(".mp3") {
             let id = rand::random::<u8>();
-            let id = format!("{:17}", id);
+            let id = format!("{:04}", id);
             let path = format!("{}/{}", music_path, file_name);
             let tag = Tag::read_from_path(&path).unwrap();
             let title = tag.title().unwrap().to_string();
