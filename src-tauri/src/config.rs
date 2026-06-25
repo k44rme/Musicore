@@ -40,8 +40,6 @@ impl Default for Config {
 pub fn create_config() -> String {
 	let path = std::env::current_exe().unwrap();
 	let config = path
-		.parent()
-		.unwrap()
 		.join("musicore.config.toml");
 
 	println!("path: {}", config.display());
@@ -58,12 +56,18 @@ pub fn create_config() -> String {
 #[tauri::command]
 pub fn edit_music_path(new_music_path: &str) -> Result<(), String> {
 	// Get executable directory
+	#[cfg(dev)]
 	let exe_dir = std::env
 		::current_exe()
-		.map_err(|e| format!("Failed to get executable path: {}", e))
-		.unwrap()
+		.map_err(|e| format!("Failed to get executable path: {}", e))?
 		.parent()
 		.unwrap()
+		.to_path_buf();
+
+	#[cfg(not(dev))]
+	let exe_dir = std::env::current_exe()
+		.map_err(|e| format!("Failed tp get executable path: {}", e))?
+		.join("/_up_")
 		.to_path_buf();
 
 	let config_path = exe_dir.join("musicore.config.toml");
@@ -77,14 +81,12 @@ pub fn edit_music_path(new_music_path: &str) -> Result<(), String> {
 	// Read existing file
 	let contents = fs
 		::read_to_string(&config_path)
-		.map_err(|e| format!("Error reading config from {:?}: {}", config_path, e))
-		.unwrap();
+		.map_err(|e| format!("Error reading config from {:?}: {}", config_path, e))?;
 
 	// Parse TOML
 	let mut doc = contents
 		.parse::<DocumentMut>()
-		.map_err(|e| format!("Failed to parse TOML: {}", e))
-		.unwrap();
+		.map_err(|e| format!("Failed to parse TOML: {}", e))?;
 
 	// Check current value
 	if let Some(current) = doc.get("music_path") {
@@ -101,13 +103,11 @@ pub fn edit_music_path(new_music_path: &str) -> Result<(), String> {
 	let new_contents = doc.to_string();
 
 	fs::write(&config_path, &new_contents)
-		.map_err(|e| format!("Failed to write config to {:?}: {}", config_path, e))
-		.unwrap();
+		.map_err(|e| format!("Failed to write config to {:?}: {}", config_path, e))?;
 
 	let verify = fs
 		::read_to_string(&config_path)
-		.map_err(|e| format!("Failed to verify: {}", e))
-		.unwrap();
+		.map_err(|e| format!("Failed to verify: {}", e))?;
 
 	Ok(())
 }
@@ -117,8 +117,7 @@ pub fn read_config() -> Result<String, std::string::String> {
 	
 	let dir = std::env
 		::current_exe()
-		.map_err(|e| format!("Failed to get executable path: {}", e))
-		.unwrap()
+		.map_err(|e| format!("Failed to get executable path: {}", e))?
 		.parent()
 		.unwrap()
 		.to_path_buf();
