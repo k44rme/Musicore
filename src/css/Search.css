@@ -31,13 +31,13 @@
 
     cursor: text;
 
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Nunito", sans-serif;
 }
 
 .search-box {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 65%;
+    transform: translateX(-65%);
     top: 15px;
     margin: auto;
     
@@ -50,22 +50,9 @@
     width: 60%;
     height: 35px;
     min-width: 75px;
-    max-width: 300px;
+    max-width: 400px;
     padding: 0px 10px;
 
     z-index: 100000;
 }
-
-.avatar {
-    width: 40px;
-    border-radius: 50%;
-
-    position: absolute;
-    top: 15px;
-    left: 85%;
-    transform: translateX(-80%);
-
-    z-index: 100000;
-}
-
 

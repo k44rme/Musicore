@@ -1,0 +1,148 @@
+@use './Variables' as *
+
+.side-panel
+    height: calc(100dvh + 1em)
+    width: 235px
+    position: fixed
+    background-color: $bg--secondary
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    margin:
+        left: -10px
+        top: -10px
+
+    user-select: none
+    color: $yellow--primary
+
+    &-home-icon &-search-icon
+        stroke: $yellow--primary
+
+    &-discover-icon &-library-icon
+        fill: $yellow--primary
+
+.sidepanel-profile
+    position: absolute
+    bottom: 1%
+    left: 30px
+    background-color: $white--secondary
+    border: 3px solid $white--primary
+    width: 80%
+    height: 70px
+    padding: 5px 10px
+    border-radius: 10px
+    margin-bottom: 5px
+
+.logo
+    width: 150px
+    height: 52px
+    margin:
+        top: 25px
+        left: 33px
+
+    fill: $secondary
+
+.menu-label
+    margin:
+        left: 20px
+        top: 10px
+        bottom: 10px
+    letter-spacing: .15em
+
+.menu-item
+    font:
+        size: 20px
+        family: 'Nunito', sans-serif
+        style: normal
+
+    margin-bottom: 14px
+    padding-left: 50px
+
+    list-style: none
+        position: inside
+
+    letter-spacing: 0.15em
+    padding:
+        bottom: 5px
+        top: 5px
+
+    transition: background-color .1s
+    border-radius: 17px
+    padding-bottom: 3px
+
+    &-label
+        text-decoration: none
+        color: $yellow--secondary !important
+
+        position: fixed
+        left: 70px
+
+        &:visited
+            color: $black--primary
+
+    &:hover &-label, .sidepanel--icon
+        color: #fff !important
+
+    &:hover
+        background-color: $secondary
+        cursor: pointer
+
+.active
+    background-color: $main
+
+.icon
+    color: $yellow--primary
+    stroke: $yellow--primary
+
+    &-fill
+        fill: $yellow--primary
+
+    .menu-item:hover & 
+        color: $white--secondary
+        stroke: $white--secondary
+
+        &-fill 
+            fill: $white--primary
+
+.sidepanel-playlist
+    &-label
+        margin-left: 20px
+        letter-spacing: .05em
+
+    &-item
+        list-style-type: none
+        letter-spacing: 5%
+
+        font:
+            size: 20px
+            family: 'Nunito', sans-serif
+
+        margin:
+            top: 10px
+            left: 50px
+
+        a
+            text-decoration: none
+            color: $yellow--primary
+
+.sidepanel-avatar
+    width: 50px
+    border-radius: 50%
+    transform: translateY(10%)
+
+.sidepanel-username
+    position: absolute
+    left: 35%
+    top: 50%
+    transform: translateY(-50%)
+
+    font:
+        size: 17px
+        weight: bold
+
+    color: $black--primary
+    letter-spacing: 5%
+
+    &:hover
+        color: $accent
+        transition: color .1s

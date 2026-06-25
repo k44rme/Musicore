@@ -1,0 +1,27 @@
+@use "./Variables" as *
+
+::-webkit-scrollbar
+    height: 5px
+    width: 5px
+
+::-webkit-scrollbar-track
+    background-color: #f1f1f1
+
+::-webkit-scrollbar-thumb
+    background-color: #888
+
+    &:hover
+        background-color: #555
+        transition: .1s background-color
+
+.app main
+    position: absolute
+    width: 69vw
+
+body
+    background-color: $bg--primary
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box

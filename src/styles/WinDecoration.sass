@@ -1,0 +1,48 @@
+@use './Variables' as *
+
+.close
+    width: 40px
+    height: 30px
+
+    appearance: none
+    background-color: $bg--primary
+    border: none
+
+    float: right
+
+    &:hover
+        background-color: #f00
+        border: 1px solid #f00
+        transition: background-color .25s, stroke .5s
+        cursor: pointer
+
+        .close-btn
+            color: #fff
+
+.win-dec
+    position: fixed
+    user-select: none
+    width: 100%
+    height: 30px
+
+    z-index: 99999
+
+.minimize
+    border: none
+    appearance: none
+    background: $bg--primary
+    border-bottom-left-radius: 7px 
+
+    position: absolute
+    right: 40px
+
+    width: 40px
+    height: 30px
+
+    &-btn:hover 
+        cursor: pointer
+
+    &:hover
+        border: 1px solid #bbb
+        background-color: #bbb
+        transition: background-color .25s

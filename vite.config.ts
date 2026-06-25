@@ -1,12 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import tailwindcss from '@tailwindcss/vite'
 
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vite.dev/config/
 export default defineConfig(async () => ({
-  plugins: [react()],
+  base: "/",
+  plugins: [react(), tailwindcss()],
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //
@@ -32,7 +34,8 @@ export default defineConfig(async () => ({
   resolve: {
     alias: {
       '@assets': path.resolve(__dirname, './assets'),
-      '@css': path.resolve(__dirname, "./src/css")
+      '@css': path.resolve(__dirname, "./src/css"),
+      '@style': path.resolve(__dirname, "src/styles")
     }
   }
 }));

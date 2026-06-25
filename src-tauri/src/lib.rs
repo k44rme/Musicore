@@ -5,18 +5,20 @@
 
 mod music;
 mod config;
-
-use std::{fs, path::PathBuf, process};
-use dunce;
-use serde_json;
-
-use toml_edit::DocumentMut;
+mod profile;
+mod cache;
 
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_fs::init())
-        .invoke_handler(tauri::generate_handler![music::get_music_files, config::read_config, config::edit_config, config::create_config])
+        .invoke_handler(tauri::generate_handler![
+            music::get_music_files, 
+            config::read_config, config::edit_music_path, config::create_config,
+            profile::get_profile_info, profile::edit_profile
+            /* cache::create_cache */
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
+

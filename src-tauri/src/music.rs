@@ -1,17 +1,22 @@
 // Thanks a lot to syedhussim who can help me with code
 // Original code: https://github.com/syedhussim/music-player-app/blob/main/src/main.rs
 
-use std::{fs};
+use std::fs;
 use id3::{Tag, TagLike};
 use serde_json;
 use base64::prelude::*;
+use tauri::{Manager, Url};
 
 #[tauri::command]
 pub fn get_music_files(music_path: &str) -> Result<std::string::String, String>  {
 
     let path = String::from(music_path);
     let mut files: Vec<MusicFile> = Vec::new();
-    let _dir = fs::read_dir(&path).unwrap();
+
+    let _dir = match fs::read_dir(&path) {
+        Ok(v) => v,
+        Err(_) => return Err("Fail".to_string())
+    };
 
     for i in _dir {
 
@@ -53,8 +58,9 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
                 title: title.to_string(),
                 artist: artist.to_string(),
                 duration: dur.to_string(),
+                durationNum: secs,
                 image: img,
-                path: path
+                path: path.clone()
             };
 
             files.push(song);
@@ -72,6 +78,16 @@ pub struct MusicFile {
     title: String,
     artist: String,
     duration: String,
+    durationNum: u64,
     image: String,
     path: String
+}
+
+mod tests {
+    use crate::music::get_music_files;
+
+    #[test]
+    fn test_music_files() {
+        println!("{:#?}", get_music_files("C:/Users/K44rm/Music"))
+    }
 }

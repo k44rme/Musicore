@@ -1,7 +1,5 @@
 import search from "@assets/icons/search_icon.svg";
-import "@css/Search.css";
-import avatar from "@assets/test_assets/k44rme.jpg";
-import { Link } from "react-router-dom";
+import "@style/Search.sass";
 import { useEffect, useState } from "react";
 
 export default function Search() {
@@ -37,10 +35,6 @@ export default function Search() {
           <img src={search} />
         </button>
       </form>
-
-      <Link to="/profile">
-        <img src={avatar} alt="User avatar" className="avatar" />
-      </Link>
     </>
   );
 }

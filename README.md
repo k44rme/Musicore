@@ -8,7 +8,5 @@ Musicore is a music player where you can:
  - Search music through streaming services like spotify, youtube music or yandex music
  - Discover new music using embeded recommendations
 
-# Donation
-<a href="https://www.donationalerts.com/r/k44rme">
-  <img src="https://github.com/k44rme/Musicore/blob/main/.github/support-button.svg" style="width:250px; border-radius:10px" />
-</a>
+## About style/ and css/ directories
+Now the css/ directory is unused, but that directory will stay in the project structure for next Musicore versions
