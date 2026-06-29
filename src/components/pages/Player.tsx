@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import player from "../../logic/player";
-import "@style/pages/PlayerPage.sass";
+import "@style/pages/Player.sass";
 import PlayerIcon from "../icons/PlayerIcon";
 
 function PlayerPage() {
@@ -11,11 +11,10 @@ function PlayerPage() {
 	const [label, setLabel] = useState("");
 	const [artist, setArtist] = useState("");
 	const [cover, setCover] = useState("");
-	const [autoplay, setAutoplay] = useState(false);
+	const [autoplay, setAutoplay] = useState(true);
 	const [volumeIcon, setVolumeIcon] = useState(0);
 	const [volume, setVolume] = useState(50);
-	const [mute, setMuteState] = useState(true);
-	const [run, setRun] = useState(false);
+	const [mute, setMuteState] = useState(false);
 
 	const audio_el = useRef<HTMLAudioElement>(null);
 
@@ -44,19 +43,19 @@ function PlayerPage() {
 		setCurrentDuration(0);
 
 		if (!autoplay) {
-			setIsPlaying(false)
-			setIcon("play")
+			setIsPlaying(false);
+			setIcon("play");
 		} else {
-			setIsPlaying(true)
-			setIcon("pause")
+			setIsPlaying(true);
+			setIcon("pause");
 		}
 
 		setLabel(song.file[song.index].title);
 		setArtist(song.file[song.index].artist);
 		setCover(song.file[song.index].image);
-		setVolume(audio.volume * 100);
 
-		setRun(true)
+		audio.volume = song.volume / 100;
+		setVolume(audio.volume * 100);
 
 		console.log("Audio element:", audio);
 		console.log("Audio src:", audio?.src);
@@ -70,30 +69,69 @@ function PlayerPage() {
 			setCurrentDuration(audio.currentTime);
 		};
 
-		audio.addEventListener("timeupdate", updateTime);
+		if (currentDuration > totalDuration) {
+			audio.removeEventListener("timeupdate", updateTime);
+		} else {
+			audio.addEventListener("timeupdate", updateTime);
+		}
+
+		const clearTimeUpdate = () =>
+			audio.addEventListener("ended", () =>
+				audio.removeEventListener("timeupdate", updateTime),
+			);
 
 		console.log("Audio paused:", audio.paused);
 		console.log("Audio duration:", audio.duration);
 
 		return () => {
 			audio.removeEventListener("timeupdate", updateTime);
+			audio.removeEventListener("ended", clearTimeUpdate);
 		};
 	}, [song?.index]);
 
 	useEffect(() => {
-		if (!audio_el.current) return;
+		if (!audio) return;
+		if (!song) return;
 
+		const el = document.querySelector(
+			"input[type='range']",
+		) as HTMLInputElement;
+
+		if (!el) return;
+		else {
+			const min = Number.parseInt(el.min) || 0;
+			const max = Number.parseInt(el.max) || 100;
+			const pct = ((Number.parseInt(el.value) - min) / (max - min)) * 100;
+			el.style.setProperty("--range-pct", pct + "%");
+		}
+
+		if (mute) {
+			audio.volume = 0;
+			setVolumeIcon(3);
+		} else {
+			audio.volume = volume / 100;
+			song.volume = volume;
+
+			const el = document.querySelector(
+				"#volume-range",
+			) as HTMLInputElement;
+
+			if (!el) return;
+			else {
+				const min = Number.parseInt(el.min) || 0;
+				const max = Number.parseInt(el.max) || 100;
+				const pct =
+					((Number.parseInt(el.value) - min) / (max - min)) * 100;
+				el.style.setProperty("--range-pct", pct + "%");
+			}
+		}
+	});
+
+	useEffect(() => {
 		if (volume <= 100 && volume > 50) setVolumeIcon(1);
 		else if (volume >= 50) setVolumeIcon(2);
 		else if (volume == 0) setVolumeIcon(3);
-
-		if (mute) {
-			audio_el.current.volume = 0;
-			setVolumeIcon(3);
-		} else if (!mute) {
-			audio_el.current.volume = volume / 100;
-		}
-	}, [song?.index, volume, mute]);
+	}, [volume, mute]);
 
 	const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newTime = Number.parseInt(e.target.value);
@@ -101,6 +139,12 @@ function PlayerPage() {
 			audio.currentTime = newTime;
 			setCurrentDuration(newTime);
 		}
+
+		const el = e.target;
+		const min = Number.parseInt(el.min) || 0;
+		const max = Number.parseInt(el.max) || 100;
+		const pct = ((Number.parseInt(el.value) - min) / (max - min)) * 100;
+		el.style.setProperty("--range-pct", pct + "%");
 	};
 
 	const togglePlay = () => {
@@ -118,29 +162,6 @@ function PlayerPage() {
 
 		if (currentDuration == totalDuration) setCurrentDuration(0);
 	};
-
-	useEffect(() => {
-		if (totalDuration > 0 && currentDuration >= totalDuration - 1) {
-			setIsPlaying(false);
-			setIcon("play");
-		}
-		
-		if (currentDuration > totalDuration) {
-			setRun(false)
-			setCurrentDuration(totalDuration);
-			const timeout = setTimeout(() => {
-				changeTrack("next");
-				setAutoplay(true);
-			}, 1000);
-
-			return () => {
-				if (!run) {
-					clearTimeout(timeout)
-					setRun(true)
-				}
-			}
-		}
-	}, [currentDuration]);
 
 	const changeTrack = (direction: "next" | "previous") => {
 		if (!song || !audio_el.current) return;
@@ -163,21 +184,37 @@ function PlayerPage() {
 
 		audio.src = initialize_song(newTrack);
 		audio.load();
-		
+
 		if (!autoplay) {
-			setIsPlaying(false)
-			setIcon("play")
+			setIsPlaying(false);
+			setIcon("play");
 		} else {
-			setIsPlaying(true)
-			setIcon("pause")
+			setIsPlaying(true);
+			setIcon("pause");
 		}
-		
+
 		setCurrentDuration(0);
-		setRun(false)
 	};
 
+	useEffect(() => {
+		if (!audio) return;
+
+		const handleEnded = () => {
+			setIsPlaying(false);
+			setIcon("play");
+			setCurrentDuration(totalDuration);
+			setAutoplay(true);
+
+			changeTrack("next");
+		};
+
+		audio.addEventListener("ended", handleEnded);
+
+		return () => audio.removeEventListener("ended", handleEnded);
+	}, [changeTrack, totalDuration]);
+
 	return (
-		<div className="player--page">
+		<div className="player--page Page">
 			{cover == "" ? (
 				<div className="player-cover non-cover">
 					<span className="player-cover-background"></span>
@@ -260,6 +297,14 @@ function PlayerPage() {
 						id="volume-range"
 						onChange={(e) => {
 							setVolume(Number.parseInt(e.target.value));
+							const el = e.target;
+							const min = Number.parseInt(el.min) || 0;
+							const max = Number.parseInt(el.max) || 100;
+							const pct =
+								((Number.parseInt(el.value) - min) /
+									(max - min)) *
+								100;
+							el.style.setProperty("--range-pct", pct + "%");
 						}}
 					/>
 				</div>

@@ -2,8 +2,6 @@
 
 .side-panel
     height: calc(100dvh + 1em)
-    width: 235px
-    position: fixed
     background-color: $bg--secondary
     margin: 0
     padding: 0
@@ -49,6 +47,9 @@
         bottom: 10px
     letter-spacing: .15em
 
+.menu
+    width: 235px
+
 .menu-item
     font:
         size: 20px
@@ -77,6 +78,8 @@
         position: fixed
         left: 70px
 
+        width: 170px
+
         &:visited
             color: $black--primary
 
@@ -103,6 +106,9 @@
 
         &-fill 
             fill: $white--primary
+
+.sidepanel--icon
+    transform: translateX(-7px)
 
 .sidepanel-playlist
     &-label

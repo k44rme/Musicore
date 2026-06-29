@@ -5,7 +5,8 @@ import { convertFileSrc, invoke } from "@tauri-apps/api/core";
 
 type Player = {
   index: number,
-  file: MusicFile[]
+  file: MusicFile[],
+  volume: number
 }
 
 function player() {

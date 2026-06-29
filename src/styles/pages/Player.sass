@@ -1,0 +1,128 @@
+@use '../Variables' as *
+
+.player-cover
+    width: 250px
+    height: 250px
+    border-radius: 17px
+
+    &-icon
+        width: 150px
+        height: 150px
+        stroke: $white--secondary
+
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 25px auto
+
+.non-cover
+    background-color: $accent
+
+.player-song-name
+    text-align: center
+
+.control-btn
+    @include reset-btn()
+    width: 40px
+    height: 40px
+    margin: 0 auto
+
+    cursor: pointer
+    font-family: 'Nunito', sans-serif
+
+.control-btns
+    width: 150px
+    margin: 0 auto
+    padding: 15px 0px
+
+.previous-btn
+    float: left
+
+.play-btn
+    margin-left: 17px
+
+.next-btn
+    float: right
+
+.duration-controller
+    display: flex
+    width: 45dvw
+    margin: 0 auto
+
+    &-range
+        width: 75%
+        padding: 15px 0px
+
+        &:focus
+            accent-color: $accent
+
+.duration-label
+    position: relative
+    top: 12px
+
+.current-duration
+    right: 5%
+
+.total-duration
+    left: 5%
+
+.bottom-panel
+    position: absolute
+    bottom: 3%
+
+#volume-range
+    accent-color: $accent
+    margin-left: 10px
+    width: 100px
+
+.volume-controller
+    width: 100px
+    display: flex
+
+.volume-btn
+    border: none
+    background: $invise
+    transform: translateY(2px)
+
+.volume-icon
+    width: 22px
+
+input[type="range"]
+    appearance: none
+    width: 100%
+    background: transparent
+    cursor: pointer
+
+    /* --- Webkit Browsers --- */
+    &::-webkit-slider-runnable-track
+        height: 10px
+        background: linear-gradient(to right, $accent var(--range-pct, 0%), $black--secondary var(--range-pct, 0%))
+        border-radius: 40px
+        border: 2px solid #1e293b
+        box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1)
+
+    &::-webkit-slider-thumb
+        -webkit-appearance: none
+        height: 20px
+        width: 20px
+        background: lch(from $accent 75 c h)
+        border-radius: 30px
+        border: 5px solid $accent
+        box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.3)
+        margin-top: -8px
+
+    /* --- Firefox --- */
+    &::-moz-range-track
+        height: 10px
+        background: linear-gradient(to right, $accent var(--range-pct, 0%), $black--secondary var(--range-pct, 0%))
+        border-radius: 40px
+        border: 2px solid #1e293b
+        box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1)
+
+    &::-moz-range-thumb
+        height: 24px
+        width: 24px
+        background: #475569
+        border-radius: 30px
+        border: 6px solid #1e293b
+        box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.3)

@@ -3,15 +3,15 @@ import SidePanel from "./components/SidePanel";
 import WindowDecoration from "./components/WindowDecoration";
 
 function Layout() {
-    return ( 
-        <>
-            <WindowDecoration />
-            <>
-                <SidePanel />
-                <Outlet />
-            </>
-        </>
-     );
+	return (
+		<>
+			<WindowDecoration />
+			<div className="app">
+				<SidePanel />
+				<Outlet />
+			</div>
+		</>
+	);
 }
 
 export default Layout;

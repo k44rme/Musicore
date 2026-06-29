@@ -16,7 +16,7 @@ pub fn get_profile_info() -> String {
     let path;
 
     if !_config.exists() {
-        path = config::create_config();
+        path = config::create_config(exe_dir);
     } else {
         path = _config.to_string_lossy().to_string();
     }
@@ -40,7 +40,7 @@ pub fn get_profile_info() -> String {
         },
         Err(err) => {
             println!("{}", err);
-            std::process::exit(1);
+            return "".to_string();
         }
     }
 }
@@ -53,7 +53,7 @@ pub fn edit_profile(prop: String, val: &str) {
         .join("musicore.config.toml");
 
     if !path.exists() {
-        config::create_config();
+        config::create_config(path.to_path_buf());
     }
 
     let content = std::fs::read_to_string(&path).unwrap();

@@ -1,9 +1,9 @@
 import Search from "../Search"
-import "@style/pages/SearchPage.sass"
+import "@style/pages/Search.sass"
 
 function SearchPage() {
     return (
-        <div className="searchpage">
+        <div className="searchpage Page">
             <Search />
         </div>
     )

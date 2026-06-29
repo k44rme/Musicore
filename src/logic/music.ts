@@ -40,7 +40,7 @@ function music() {
 				setMusic(JSON.parse(result));
 				console.log("Music loaded");
 			} catch (err) {
-				console.error("Failed to load music:", err);
+				console.warn("Failed to load music:", err);
 				setErr("Failed to load music");
 				console.log(err);
 			}
@@ -56,6 +56,7 @@ function music() {
 		music: music,
 		music_path: music_path,
 		err: err,
+		ready: ready
 	};
 }
 

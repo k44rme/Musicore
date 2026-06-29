@@ -1,7 +1,7 @@
 import avatar from "@assets/test_assets/k44rme.jpg";
 import banner from "@assets/test_assets/k44rme_banner.png";
 
-import "@style/pages/ProfilePage.sass";
+import "@style/pages/Profile.sass";
 import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 
@@ -48,7 +48,7 @@ function ProfilePage() {
 	console.log(nickname);
 
 	return (
-		<main className="profile">
+		<main className="profile Page">
 			<div className="header">
 				<img src={avatar} alt="" className="profile-avatar" />
 				<img src={banner} alt="" className="banner" />
