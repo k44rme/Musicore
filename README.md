@@ -10,5 +10,5 @@ Musicore is a music player where you can:
 
 # Donation
 <a href="https://www.donationalerts.com/r/k44rme">
-  <img src="https://github.com/k44rme/Musicore/blob/main/.github/support-button.svg" style="width:250px; border-radius:10px" />
+  <img src="https://github.com/k44rme/Musicore/blob/main/.github/support-button.svg" style="width:300px; border-radius:10px" />
 </a>
