@@ -5,13 +5,17 @@
 ## Overview
 Musicore is a music player where you can:
  - Listen music
- - Search music through streaming services like spotify, youtube music or yandex music
- - Discover new music using embedded recommendations
+ - Search music through streaming services like spotify, youtube music or yandex music (Currently not working)
+ - Discover new music using embedded recommendations (Currently not working)
 
  ## Features
- - Small app size
- - App speed
+- Small size of the app
+- The speed of the app
 
+## Technical stack
+- Tauri
+- React
+- TypeScript
 
 # Donation
 <a href="https://www.donationalerts.com/r/k44rme">
