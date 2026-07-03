@@ -26,7 +26,7 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
 
         if x && file_name.ends_with(".mp3") {
             let id = rand::random::<u8>();
-            let id = format!("{:04}", id);
+            let id = format!("{:03}", id);
             let path = format!("{}/{}", music_path, file_name);
             let tag = Tag::read_from_path(&path).unwrap();
             let title = tag.title().unwrap().to_string();
@@ -87,6 +87,7 @@ mod tests {
     use crate::music::get_music_files;
 
     #[test]
+    #[ignore = "Because the output is very large"]
     fn test_music_files() {
         println!("{:#?}", get_music_files("C:/Users/K44rm/Music"))
     }

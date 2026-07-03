@@ -1,30 +1,17 @@
 import { lazy, Suspense } from "react";
-import "@style/pages/LibraryPage.sass";
+import "@style/pages/Library.sass";
 import "@style/Music.sass"
+import Loader from "../Loader";
 
 function Library() {
 	const Music = lazy(() => import("../Music"));
 
 	return (
-		<div className="library-page">
-			<Suspense fallback={<Loading />}>
+		<div className="library-page Page">
+			<Suspense fallback={<Loader />}>
 				<Music />
 			</Suspense>
 		</div>
-	);
-}
-
-function Loading() {
-	return (
-		<span
-			style={{
-				position: "absolute",
-				transform: "translateX(25vw)",
-				marginTop: "50dvh",
-			}}
-		>
-			Loading...
-		</span>
 	);
 }
 

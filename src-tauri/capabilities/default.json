@@ -1,21 +1,51 @@
 {
-  "$schema": "../gen/schemas/desktop-schema.json",
-  "identifier": "default",
-  "description": "Capability for the main window",
-  "windows": ["main"],
-  "permissions": [
-    "core:default",
-    "opener:default",
-    "core:window:default",
-    "core:window:allow-start-dragging",
-    "core:window:allow-close",
-    "core:window:allow-minimize",
-    {
-      "identifier": "fs:scope",
-      "allow": [
-        { "path": "$RESOURCE/**" }
-      ]
-    }
-  ]
+	"$schema": "../gen/schemas/desktop-schema.json",
+	"identifier": "default",
+	"description": "Capability for the main window",
+	"windows": ["main"],
+	"permissions": [
+		"core:default",
+		"opener:default",
+		"core:window:default",
+		"core:window:allow-start-dragging",
+		"core:window:allow-close",
+		"core:window:allow-minimize",
+		{
+			"identifier": "fs:scope",
+			"allow": [
+				{
+					"path": "$RESOURCE/**"
+				},
+				{
+					"path": "$DOCUMENT/**"
+				},
+				{
+					"path": "$AUDIO/**"
+				}
+			]
+		},
+		{
+			"identifier": "fs:allow-exists",
+			"allow": [
+				{
+					"path": "$DOCUMENT/**"
+				},
+				{
+					"path": "$AUDIO/**"
+				},
+				{
+					"path": "$RESOURCE/**"
+				},
+				{
+					"path": "$DOCUMENT/Musicore/**"
+				},
+				{
+					"path": "$CONFIG/**"
+				}
+			]
+		},
+		"fs:default",
+		"fs:allow-exe-read-recursive",
+		"fs:allow-document-write"
+	]
 }
-

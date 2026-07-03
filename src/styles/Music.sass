@@ -25,6 +25,16 @@
 
     border-radius: 7px
 
+    &-title 
+        color: $yellow--secondary
+        text-decoration: none
+        font-size: 20px
+        font-weight: bold
+        transition: color .1s
+
+        &:hover
+            color: $red--primary
+
     &-cover
         position: absolute
         width: 100px
@@ -38,7 +48,7 @@
         min-width: 0
 
     &-artist 
-        margin-top: 5px
+        margin-top: 7px
 
     &-duration 
         flex-shrink: 0
@@ -46,10 +56,6 @@
         display: flex
         align-items: center
         margin-right: 10px
-
-    &:hover &-title
-        color: $secondary
-        transition: color .1s
 
     &:first-child
         margin-top: 20px

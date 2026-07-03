@@ -1,4 +1,4 @@
-import "@style/pages/MainPage.sass";
+import "@style/pages/Main.sass";
 
 function MainPage() {
 	const library = [
@@ -25,7 +25,7 @@ function MainPage() {
 	];
 
 	return (
-		<div className="MainPage">
+		<div className="MainPage Page">
 			<div className="library">
 				<h2 className="library-label">Библиотека</h2>
 				{/* Authors column */}

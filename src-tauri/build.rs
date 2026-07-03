@@ -1,5 +1,5 @@
 fn main() {
-    // Get the target directory (where the exe will be)
+    /* // Get the target directory (where the exe will be)
     let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").unwrap();
     let profile = std::env::var("PROFILE").unwrap_or_else(|_| "debug".to_string());
     
@@ -32,12 +32,12 @@ fn main() {
     }
     
     // Re-run build script if config changes
-    println!("cargo:rerun-if-changed=../musicore.config.toml");
+    println!("cargo:rerun-if-changed=../musicore.config.toml"); */
 
     tauri_build::build();
 }
 
-fn create_default_config(path: &std::path::Path) {
+/* fn create_default_config(path: &std::path::Path) {
     let default = r#"# Musicore Configuration
 music_path = ""
 
@@ -48,4 +48,4 @@ nickname = "Musicore-user"
 "#;
     std::fs::write(path, default)
         .unwrap_or_else(|e| println!("cargo:warning=Failed to create default config: {}", e));
-}
+} */
