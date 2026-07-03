@@ -1,5 +1,9 @@
 @use '../Variables' as *
 
+.player--page
+    width: max(500px, 70%)
+    overflow: hidden
+
 .player-cover
     width: 250px
     height: 250px
@@ -18,9 +22,6 @@
 .non-cover
     background-color: $accent
 
-.player-song-name
-    text-align: center
-
 .control-btn
     @include reset-btn()
     width: 40px
@@ -35,14 +36,16 @@
     margin: 0 auto
     padding: 15px 0px
 
+    display: flex
+
 .previous-btn
-    float: left
+    align-self: flex-start
 
 .play-btn
-    margin-left: 17px
+    align-self: center
 
 .next-btn
-    float: right
+    align-self: flex-end
 
 .duration-controller
     display: flex
@@ -126,3 +129,8 @@ input[type="range"]
         border-radius: 30px
         border: 6px solid #1e293b
         box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.3)
+
+.marquee
+    width: 100%
+    margin: auto
+    text-align: center

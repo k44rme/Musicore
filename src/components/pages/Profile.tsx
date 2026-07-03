@@ -4,12 +4,14 @@ import banner from "@assets/test_assets/k44rme_banner.png";
 import "@style/pages/Profile.sass";
 import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
+import { readConfig } from "../../logic/config";
+import { Profile } from "../../structs";
 
 function ProfilePage() {
-	const [profile, setProfile] = useState<string>();
+	const [profile, setProfile] = useState<Profile>();
 	const [name, setName] = useState<string>();
 
-	useEffect(() => {
+	/* useEffect(() => {
 		const loadProfile = async () => {
 			try {
 				const res = await invoke<string>("get_profile_info");
@@ -21,6 +23,17 @@ function ProfilePage() {
 
 		loadProfile();
 	});
+
+	
+	let profile_string: string = profile ?? "Loading...";
+	console.log(profile_string);
+	let nickname;
+	if (profile_string != "Loading...") {
+		nickname = JSON.parse(profile_string).nickname;
+	} else {
+		nickname = profile_string;
+	}
+	console.log(nickname); */
 
 	function edit_profile_name() {
 		const editProfileName = async () => {
@@ -37,15 +50,20 @@ function ProfilePage() {
 		editProfileName();
 	}
 
-	let profile_string: string = profile ?? "Loading...";
-	console.log(profile_string);
-	let nickname;
-	if (profile_string != "Loading...") {
-		nickname = JSON.parse(profile_string).nickname;
-	} else {
-		nickname = profile_string;
-	}
-	console.log(nickname);
+	useEffect(() => {
+		const loadConfig = async () => {
+			try {
+				const config_content = await readConfig();
+				setProfile(config_content.profile);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		
+		loadConfig();
+	}, []);
+	
+	let nickname = profile?.nickname;
 
 	return (
 		<main className="profile Page">
@@ -80,7 +98,7 @@ function ProfilePage() {
 						className="nickname-edit-btn"
 						onClick={(e) => {
 							e.preventDefault();
-							edit_profile_name();
+							edit_profile_name()
 							window.location.reload();
 						}}
 					>

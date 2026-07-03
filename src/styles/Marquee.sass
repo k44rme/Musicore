@@ -1,0 +1,23 @@
+.marquee
+    &-container
+        position: relative
+        padding: 10px 0
+        width: 300px
+
+    &-content
+        display: flex
+        white-space: nowrap
+        gap: 50%
+        width: max-content
+
+        &:hover
+            transform: translateX(0)
+            animation: none
+            flex: 1
+
+@keyframes marquee-left
+    0%
+        transform: translateX(0)
+
+    100%
+        transform: translateX(-100%)

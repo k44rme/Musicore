@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import "../structs";
 import "@style/Music.sass";
 import Icon from "./Icon";
+import Marquee from "./Marquee";
 
 function Music() {
 	const [path, setPath] = useState("");
@@ -19,7 +20,7 @@ function Music() {
 
 	let visibleSongs = music.slice(0, visibleSongsCount);
 
-	let music_path: String = config?.music_path ?? mus.music_path ?? "";
+	let music_path: String = config?.toString() ?? ""
 
 	useEffect(() => {
 		if (music_path != "") setDisplay("none");
@@ -57,7 +58,7 @@ function Music() {
 
 	if (music_path != "") {
 		console.log("Config found, music is loading...");
-		console.log(config?.music_path, mus.music_path);
+		console.log(config, mus.music_path);
 
 		return (
 			<div className="song-list" ref={IntersectionRef}>
@@ -93,13 +94,15 @@ function Music() {
 								/>
 							)}
 							<div className="song-info">
-								<Link
-									className="song-title"
-									state={queue}
-									to={`/play/${file.id}`}
-								>
-									{file.title}
-								</Link>
+								<Marquee style={{ overflow: "hidden", textAlign: "left" }}>
+									<Link
+										className="song-title"
+										state={queue}
+										to={`/play/${file.id}`}
+									>
+										{file.title}
+									</Link>
+								</Marquee>
 								<p className="song-artist">{file.artist}</p>
 							</div>
 							<div className="song-duration">

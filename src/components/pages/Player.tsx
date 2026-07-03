@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import player from "../../logic/player";
 import "@style/pages/Player.sass";
 import PlayerIcon from "../icons/PlayerIcon";
+import Marquee from "../Marquee";
 
 function PlayerPage() {
 	const [icon, setIcon] = useState("play");
@@ -131,7 +132,7 @@ function PlayerPage() {
 		if (volume <= 100 && volume > 50) setVolumeIcon(1);
 		else if (volume >= 50) setVolumeIcon(2);
 		else if (volume == 0) setVolumeIcon(3);
-	}, [volume, mute]);
+	});
 
 	const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newTime = Number.parseInt(e.target.value);
@@ -215,6 +216,16 @@ function PlayerPage() {
 
 	return (
 		<div className="player--page Page">
+			<audio
+				src={initialize_song(track)}
+				className="player-music"
+				ref={audio_el}
+				onLoadedMetadata={(e) => {
+					setTotalDuration(e.currentTarget.duration);
+				}}
+				key={track}
+				autoPlay={autoplay}
+			/>
 			{cover == "" ? (
 				<div className="player-cover non-cover">
 					<span className="player-cover-background"></span>
@@ -227,19 +238,19 @@ function PlayerPage() {
 					className="player-cover"
 				/>
 			)}
-			<h1 className="player-song-name">
-				{artist} - {label}
-			</h1>
-			<audio
-				src={initialize_song(track)}
-				className="player-music"
-				ref={audio_el}
-				onLoadedMetadata={(e) => {
-					setTotalDuration(e.currentTarget.duration);
+			<Marquee className="marquee">
+				<h2 style={{ fontSize: "30px" }}>{label}</h2>
+			</Marquee>
+			<span
+				style={{
+					display: "block",
+					textAlign: "center",
+					fontSize: "20px",
+					marginTop: "5px",
 				}}
-				key={track}
-				autoPlay={autoplay}
-			/>
+			>
+				{artist}
+			</span>
 			<div className="duration-controller">
 				<span className="duration-label current-duration">
 					{formatTime(currentDuration)}
