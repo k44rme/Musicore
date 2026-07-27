@@ -2,7 +2,10 @@
 	"$schema": "../gen/schemas/desktop-schema.json",
 	"identifier": "default",
 	"description": "Capability for the main window",
-	"windows": ["main"],
+	"windows": [
+		"main",
+		"Musicore"
+	],
 	"permissions": [
 		"core:default",
 		"opener:default",
@@ -10,6 +13,7 @@
 		"core:window:allow-start-dragging",
 		"core:window:allow-close",
 		"core:window:allow-minimize",
+		"os:default",
 		{
 			"identifier": "fs:scope",
 			"allow": [
@@ -21,6 +25,12 @@
 				},
 				{
 					"path": "$AUDIO/**"
+				},
+				{
+					"path": "/sdcard/Music/**/*"
+				},
+				{
+					"path": "/sdcard/Documents/**/*"
 				}
 			]
 		},
@@ -41,6 +51,12 @@
 				},
 				{
 					"path": "$CONFIG/**"
+				},
+				{
+					"path": "/sdcard/Music/**/*"
+				},
+				{
+					"path": "/sdcard/Documents/**/*"
 				}
 			]
 		},

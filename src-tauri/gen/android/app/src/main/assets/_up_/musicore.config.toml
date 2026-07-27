@@ -1,0 +1,14 @@
+
+music_path = ""
+
+[profile]
+avatar = "assets/profile" # Path to avatar
+banner = "assets/profile" # Path to banner
+nickname = "k44rme" # Replace this string to your nickname
+
+[playlists]
+favorites.icon = ""
+favorites.name = "Любимое"
+
+history.icon = ""
+history.name = "История"

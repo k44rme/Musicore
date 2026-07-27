@@ -1,25 +1,22 @@
 // Thanks a lot to syedhussim who can help me with code
 // Original code: https://github.com/syedhussim/music-player-app/blob/main/src/main.rs
 
-use std::fs;
+use base64::prelude::*;
 use id3::{Tag, TagLike};
 use serde_json;
-use base64::prelude::*;
-use tauri::{Manager, Url};
+use std::fs;
 
 #[tauri::command]
-pub fn get_music_files(music_path: &str) -> Result<std::string::String, String>  {
-
-    let path = String::from(music_path);
+pub fn get_music_files(music_path: std::path::PathBuf) -> Result<std::string::String, String> {
+    let path = music_path.to_string_lossy().to_string();
     let mut files: Vec<MusicFile> = Vec::new();
 
     let _dir = match fs::read_dir(&path) {
         Ok(v) => v,
-        Err(_) => return Err("Fail".to_string())
+        Err(_) => return Err("Fail".to_string()),
     };
 
     for i in _dir {
-
         let dir = i.as_ref().unwrap().path().display().to_string();
         let file_name = dir.replace(&path, "").replace("/", "").replace("\\", "");
         let x = i.unwrap().file_type().unwrap().is_file();
@@ -27,10 +24,14 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
         if x && file_name.ends_with(".mp3") {
             let id = rand::random::<u8>();
             let id = format!("{:03}", id);
-            let path = format!("{}/{}", music_path, file_name);
+            let path = format!("{}/{}", music_path.to_string_lossy().to_string(), file_name);
             let tag = Tag::read_from_path(&path).unwrap();
             let title = tag.title().unwrap().to_string();
-            let artist = tag.artist().or_else(|| { Some("Unknown") }).unwrap().to_string();
+            let artist = tag
+                .artist()
+                .or_else(|| Some("Unknown"))
+                .unwrap()
+                .to_string();
             let duration = mp3_duration::from_path(&path).unwrap();
 
             let secs = duration.as_secs();
@@ -41,9 +42,9 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
             let dur;
 
             if hours > 0 {
-                dur = hours.to_string()+":"+&minutes.to_string()+":"+&seconds.to_string();
+                dur = hours.to_string() + ":" + &minutes.to_string() + ":" + &seconds.to_string();
             } else {
-                dur = minutes.to_string()+":"+&seconds.to_string();
+                dur = minutes.to_string() + ":" + &seconds.to_string();
             }
             let mut pics = tag.pictures();
             let mut img = String::new();
@@ -60,12 +61,11 @@ pub fn get_music_files(music_path: &str) -> Result<std::string::String, String> 
                 duration: dur.to_string(),
                 durationNum: secs,
                 image: img,
-                path: path.clone()
+                path: path.clone(),
             };
 
             files.push(song);
         }
-        
     }
 
     serde_json::to_string(&files).map_err(|e| e.to_string())
@@ -80,15 +80,15 @@ pub struct MusicFile {
     duration: String,
     durationNum: u64,
     image: String,
-    path: String
+    path: String,
 }
 
 mod tests {
-    use crate::music::get_music_files;
+    use super::*;
 
     #[test]
-    #[ignore = "Because the output is very large"]
+    #[ignore = "because the output is very large"]
     fn test_music_files() {
-        println!("{:#?}", get_music_files("C:/Users/K44rm/Music"))
+        println!("{:#?}", get_music_files("C:/Users/K44rm/Music".into()))
     }
 }

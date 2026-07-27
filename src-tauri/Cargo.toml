@@ -13,25 +13,47 @@ edition = "2021"
 # This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
 name = "musicore_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
+path = "src/lib.rs"
 
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2", features = ["protocol-asset", "devtools"] }
+# ✅ Tauri with mobile features
+tauri = { version = "2", features = ["protocol-asset"] }
+
 tauri-plugin-opener = "2"
+tauri-plugin-fs = "2"
+
+# ✅ Core dependencies (works on all platforms)
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-tauri-plugin-fs = "2"
 dirs = "6.0.0"
+directories = "6.0.0"
 id3 = "1.16.4"
 base64 = "0.22.1"
 urlencoding = "2.1.3"
 mp3-duration = "0.1.10"
 rand = "0.10.1"
-tiny_http = "0.12.0"
 toml = "1.1.2"
-dunce = "1.0.5"
 toml_edit = "0.25.11"
-directories = "6.0.0"
+dunce = "1.0.5"
 
+# ✅ Dependencies that may need platform-specific handling
+tiny_http = { version = "0.12.0", optional = true }
+tauri-plugin-os = "2"
+
+# ✅ Android-specific dependencies
+[target.'cfg(target_os = "android")'.dependencies]
+ndk = "0.7"
+jni = "0.21"
+tauri-plugin-window = { version = "2.0.0-alpha.2", optional = true }
+
+# ✅ Features for conditional compilation
+[features]
+# Default features (desktop and mobile)
+default = []
+# Mobile-only features
+mobile = ["tauri-plugin-window"]
+
+# ✅ Enable all features for both targets
