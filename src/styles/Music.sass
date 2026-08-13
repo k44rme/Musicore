@@ -2,18 +2,18 @@
 
 .song-list
     width: 90%
-    height: calc( 100% + 1em )
+    height: inherit
 
-    margin-left: 50%
-    transform: translateX(-50%)
+    padding-bottom: 20px
+    margin: 0 auto
 
 .song
     position: relative
     text-decoration: none
     color: $yellow--primary
 
-    display: flex
-    align-items: center
+    display: grid
+    grid-template-columns: 2fr 10fr 1fr
     gap: 20px
     width: 100%
     height: 125px
@@ -31,31 +31,24 @@
         font-size: 20px
         font-weight: bold
         transition: color .1s
+        text-align: left
 
         &:hover
             color: $red--primary
 
     &-cover
-        position: absolute
         width: 100px
         margin-top: 5px
 
-    &-info 
-        width: 70%
-        margin-left: 125px
-        margin-top: 15px
-        flex: 1
-        min-width: 0
+    &-info
+        width: 100%
+        margin: auto
 
     &-artist 
         margin-top: 7px
 
-    &-duration 
-        flex-shrink: 0
-        align-self: stretch
-        display: flex
-        align-items: center
-        margin-right: 10px
+    &-duration
+        margin: auto
 
     &:first-child
         margin-top: 20px
@@ -63,7 +56,6 @@
 .none-song-cover
     width: 100px
     height: 100px
-    position: absolute
     background-color: $accent
     margin-top: 5px
     border-radius: 7px

@@ -20,7 +20,6 @@ function Loader() {
                         border-radius: 50%;
                         border-color: #E4E4ED #0000;
                         animation: s6 3s infinite linear;
-                        transition: none !important;
                     }
                     .custom-loader::before,
                     .custom-loader::after {    

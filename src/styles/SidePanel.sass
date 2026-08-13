@@ -1,6 +1,8 @@
 @use './Variables' as *
 
-.side-panel
+$duration: 300ms
+
+#sidebar
     height: calc(100dvh + 1em)
     background-color: $bg--secondary
     margin: 0
@@ -10,46 +12,88 @@
         left: -10px
         top: -10px
 
-    user-select: none
-    color: $yellow--primary
-
-    &-home-icon &-search-icon
-        stroke: $yellow--primary
-
-    &-discover-icon &-library-icon
-        fill: $yellow--primary
-
-    
     border-top-right-radius: 10px
     border-bottom-right-radius: 10px
 
-.sidepanel-profile
+    user-select: none
+    color: $yellow--primary
+    transition: width $duration
+
+    z-index: 110
+
+    width: 235px
+    overflow: hidden
+
+    .user-mini
+        display: none
+
+    .stroke, .user-mini > path
+        stroke: $yellow--primary
+
+    .fill
+        fill: $yellow--primary
+
+#switcher
+    left: 200px
+    z-index: 110
+
+#switcher > path
+    fill: $yellow--primary
+
+#switcher.show
+    transform: rotate(180deg)
+    transition: left $duration
+
+#switcher
     position: absolute
-    bottom: 1%
-    left: 30px
-    background-color: $white--secondary
-    border: 3px solid $white--primary
-    width: 80%
-    height: 70px
-    padding: 5px 10px
-    border-radius: 10px
-    margin-bottom: 5px
+    z-index: 110
+    top: 10px
+
+#switcher.hidden
+    left: 16px
+
+#sidebar.hidden
+    width: 45px
+    overflow: hidden
+
+    .menu-label,
+    .sidepanel-profile
+        display: none
+
+    .sidepanel--icon
+        transform: translateX(-35px)
+        transition: transform $duration
+
+    .menu
+        width: 40px
+        transition: width $duration
+
+    .logo
+        margin-left: 50px
+
+    .user-mini
+        position: absolute
+        bottom: 2%
+        width: 20px
+        left: 12px
+
+    .sidebar--icon
+        transform: translateX(-25px)
+
+    .menu-item
+        width: 150%
+
+    .sidebar--settings
+        left: 7%
 
 .logo
     width: 150px
     height: 52px
     margin:
         top: 25px
-        left: 33px
+        bottom: 25px
 
     fill: $secondary
-
-.menu-label
-    margin:
-        left: 20px
-        top: 10px
-        bottom: 10px
-    letter-spacing: .15em
 
 .menu
     width: 235px
@@ -61,7 +105,7 @@
         style: normal
 
     margin-bottom: 14px
-    padding-left: 50px
+    padding-left: 40px
 
     list-style: none
         position: inside
@@ -79,15 +123,22 @@
         text-decoration: none
         color: $yellow--secondary !important
 
-        position: fixed
+        position: absolute
         left: 70px
+        margin-top: 3px
 
         width: 170px
 
         &:visited
             color: $black--primary
 
-    &:hover &-label, .sidepanel--icon
+    &:hover .fill
+        fill: #fff !important
+
+    &:hover .stroke
+        stroke: #fff !important
+
+    &:hover &-label
         color: #fff !important
 
     &:hover
@@ -104,47 +155,43 @@
     &-fill
         fill: $yellow--primary
 
-    .menu-item:hover & 
+    .menu-item:hover &
         color: $white--secondary
         stroke: $white--secondary
 
-        &-fill 
+        &-fill
             fill: $white--primary
 
-.sidepanel--icon
-    transform: translateX(-7px)
+.sidebar--bottom-panel
+    display: flex
+    position: fixed
+    bottom: 1%
+    width: inherit
+    align-items: center
+    justify-content: space-between
+    overflow: hidden
 
-.sidepanel-playlist
-    &-label
-        margin-left: 20px
-        letter-spacing: .05em
+.sidepanel-profile
+    align-self: flex-start
+    display: inline-block
+    position: absolute
+    width: 175px
+    margin-top: -20px
+    height: 30px
+    padding: 5px 10px
+    margin-left: 15px
 
-    &-item
-        list-style-type: none
-        letter-spacing: 5%
-
-        font:
-            size: 20px
-            family: 'Nunito', sans-serif
-
-        margin:
-            top: 10px
-            left: 50px
-
-        a
-            text-decoration: none
-            color: $yellow--primary
+.sidebar--icon
+    transform: translateY(3px)
 
 .sidepanel-avatar
-    width: 50px
+    width: 30px
     border-radius: 50%
-    transform: translateY(10%)
 
 .sidepanel-username
-    position: absolute
-    left: 35%
-    top: 50%
-    transform: translateY(-50%)
+    position: relative
+    left: 10%
+    bottom: 50%
 
     font:
         size: 17px
@@ -156,3 +203,27 @@
     &:hover
         color: $accent
         transition: color .1s
+
+.sidebar--settings
+    outline: none
+    border: none
+    transition: background-color .1s
+    background-color: $bg--secondary
+    color: $yellow--primary
+    border-radius: 5px
+    width: 30px
+    height: 30px
+    margin-right: 7px
+    z-index: 10
+
+    &-icon
+        width: 100%
+
+    &:hover
+        background-color: $secondary
+
+        &-icon
+            fill: #fff
+
+    &:hover &-icon > path
+        color: #fff !important

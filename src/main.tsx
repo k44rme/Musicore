@@ -8,6 +8,8 @@ import Layout from "./Layout";
 import "@style/App.sass"
 import Library from "./components/pages/Library";
 
+import '../i18n'
+
 const router = createBrowserRouter([
     {
       element: <Layout />,

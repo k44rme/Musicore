@@ -1,0 +1,18 @@
+{
+    "vertical_tab": {
+        "general": "General",
+        "profile": "Profile"
+    },
+
+    "main_tab": {
+        "lang": {
+            "name": "Language",
+            "desc": "Select app language"
+        },
+        "theme": {
+            "name": "Theme",
+            "desc": "Select app theme",
+            "value": ["Musicore Beach", "Gruvbox"]
+        }
+    }
+}

@@ -1,49 +1,51 @@
-import "@style/SidePanel.sass";
 import { Link, useMatch } from "react-router-dom";
-import avatar from "@assets/test_assets/k44rme.jpg";
 import { useEffect, useState } from "react";
-import { invoke } from "@tauri-apps/api/core";
-import Icon from "./Icon";
-import { readConfig } from "../logic/config";
 import { Profile } from "../structs";
+import { readConfig } from "../logic/config";
+import avatar from "@assets/test_assets/k44rme.jpg";
+import Icon from "./Icon";
+import "@style/SidePanel.sass";
+import Settings from "./Settings";
+import { useTranslation } from 'react-i18next'
 
 function SidePanel() {
 	const [profile, setProfile] = useState<Profile>();
 	const [ready, setReady] = useState(false);
 	const [content, setContent] = useState("");
+	const [sidebar_state, setSidebarState] = useState(true);
 
-	const menuItems = [
+	const { t } = useTranslation("sidebar")
+
+	const menuItems =  [
 		{
 			id: 1,
-			label: "Главная",
+			label: t("home"),
 			path: "/",
 			active: useMatch("/"),
 			icon: "home",
 		},
 		{
 			id: 2,
-			label: "Поиск",
+			label: t("search"),
 			path: "/search",
 			active: useMatch("/search"),
 			icon: "search",
 		},
 		{
 			id: 3,
-			label: "Discover",
+			label: t("discover"),
 			path: "/discover",
 			active: useMatch("/discover"),
 			icon: "discover",
 		},
 		{
 			id: 4,
-			label: "Библиотека",
+			label: t("library"),
 			path: "/library",
 			active: useMatch("/library"),
 			icon: "library",
 		},
 	];
-
-	let playlists = ["Любимое", "Новый плейлист", "Избранное"];
 
 	/* useEffect(() => {
         const loadProfile = async () => {
@@ -99,9 +101,22 @@ function SidePanel() {
 	}, [profile, ready]);
 
 	return (
-		<div className="side-panel">
+		<div id="sidebar" className={sidebar_state ? "" : "hidden"}>
+			<button
+				onClick={() => setSidebarState(!sidebar_state)}
+				style={{
+					margin: "10px 17px",
+					background: "none",
+					border: "none",
+				}}
+			>
+				<Icon
+					icon="arrow"
+					id="switcher"
+					className={sidebar_state ? "show" : "hidden"}
+				/>
+			</button>
 			<Icon icon="Logo" className="logo" />
-			<h2 className="menu-label">Menu</h2>
 			<ul className="menu">
 				{menuItems.map((item: any) => {
 					let className;
@@ -114,32 +129,38 @@ function SidePanel() {
 
 					if (item.icon == "library" || item.icon == "discover") {
 						icon_fill = "fill";
+					} else {
+						icon_fill = "stroke"
 					}
 					return (
 						<li className={className} key={item.id}>
-							<Icon
-								icon={item.icon}
-								className={`${item.icon}-icon icon ${icon_fill}`}
-							/>
-							<Link to={item.path} className="menu-item-label">
-								{item.label}
+							<Link to={item.path}>
+								<Icon
+									icon={item.icon}
+									className={`${item.icon}-icon icon ${icon_fill} `}
+									sidebarClassName="sidebar--icon"
+								/>
+								<span className="menu-item-label">
+									{item.label}
+								</span>
 							</Link>
 						</li>
 					);
 				})}
 			</ul>
-			<h2 className="sidepanel-playlist-label">Playlists</h2>
-			<ul>
-				{playlists.map((playlist: any, index) => (
-					<li className="sidepanel-playlist-item" key={index}>
-						<Link to={`/playlist/${playlist}`}>{playlist}</Link>
-					</li>
-				))}
-			</ul>
-			<Link className="sidepanel-profile" to="/profile">
-				<img src={avatar} alt="" className="sidepanel-avatar" />
-				<span className="sidepanel-username">{content}</span>
-			</Link>
+			<div className="sidebar--bottom-panel">
+				<Link to="/profile">
+					<div className="sidepanel-profile">
+						<img src={avatar} alt="" className="sidepanel-avatar" />
+						<span className="sidepanel-username">{content}</span>
+					</div>
+					<Icon icon="user" className="user-mini" />
+				</Link>
+				<button className="sidebar--settings" popoverTarget="settings">
+					<Icon icon="settings" className="sidebar--settings-icon" />
+				</button>
+			</div>
+			<Settings />
 		</div>
 	);
 }

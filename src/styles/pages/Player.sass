@@ -1,9 +1,5 @@
 @use '../Variables' as *
 
-.player--page
-    width: max(500px, 70%)
-    overflow: hidden
-
 .player-cover
     width: 250px
     height: 250px
@@ -70,8 +66,11 @@
     left: 5%
 
 .bottom-panel
+    width: 70%
     position: absolute
-    bottom: 3%
+    bottom: 1%
+    display: flex
+    justify-content: center
 
 #volume-range
     accent-color: $accent
@@ -79,7 +78,7 @@
     width: 100px
 
 .volume-controller
-    width: 100px
+    width: fit-content
     display: flex
 
 .volume-btn
@@ -129,8 +128,3 @@ input[type="range"]
         border-radius: 30px
         border: 6px solid #1e293b
         box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.3)
-
-.marquee
-    width: 100%
-    margin: auto
-    text-align: center

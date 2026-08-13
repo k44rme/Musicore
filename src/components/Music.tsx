@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import "../structs";
 import "@style/Music.sass";
 import Icon from "./Icon";
-import Marquee from "./Marquee";
 
 function Music() {
 	const [path, setPath] = useState("");
@@ -94,15 +93,13 @@ function Music() {
 								/>
 							)}
 							<div className="song-info">
-								<Marquee style={{ overflow: "hidden", textAlign: "left" }}>
-									<Link
-										className="song-title"
-										state={queue}
-										to={`/play/${file.id}`}
-									>
-										{file.title}
-									</Link>
-								</Marquee>
+								<Link
+									className="song-title"
+									state={queue}
+									to={`/play/${file.id}`}
+								>
+									{file.title}
+								</Link>
 								<p className="song-artist">{file.artist}</p>
 							</div>
 							<div className="song-duration">

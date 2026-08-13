@@ -1,6 +1,11 @@
 import "@style/pages/Main.sass";
+import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import useWindowResize from "../hooks/useWindowResize";
 
 function MainPage() {
+	const [pageStyles, setPageStyles] = useState({ paddingLeft: "25px" });
+
 	const library = [
 		{
 			type: "author",
@@ -24,8 +29,16 @@ function MainPage() {
 		},
 	];
 
+	let device = useOutletContext();
+	let resize_event = useWindowResize().windowSize;
+
+	useEffect(() => {
+		if (device == "mobile") setPageStyles({ paddingLeft: "25px" })
+		else if (device == "desktop") setPageStyles({ paddingLeft: "50px" })
+	}, [resize_event]);
+
 	return (
-		<div className="MainPage Page">
+		<div className="MainPage Page" style={pageStyles}>
 			<div className="library">
 				<h2 className="library-label">Библиотека</h2>
 				{/* Authors column */}
@@ -74,7 +87,7 @@ function MainPage() {
 				</div>
 			</div>
 			{/* <div className="usually-listening">
-                <h2 className="usualy-listening-label">Часто прослушевамые</h2>
+                <h2 className="usually-listening-label">Часто прослушевамые</h2>
             </div> */}
 		</div>
 	);

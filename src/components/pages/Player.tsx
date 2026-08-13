@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import player from "../../logic/player";
 import "@style/pages/Player.sass";
-import PlayerIcon from "../icons/PlayerIcon";
-import Marquee from "../Marquee";
+import PlayerIcon from "../icons/PlayerIcon"
 
 function PlayerPage() {
 	const [icon, setIcon] = useState("play");
@@ -238,9 +237,7 @@ function PlayerPage() {
 					className="player-cover"
 				/>
 			)}
-			<Marquee className="marquee">
-				<h2 style={{ fontSize: "30px" }}>{label}</h2>
-			</Marquee>
+			<h2 style={{ fontSize: "30px", textAlign: "center" }}>{label}</h2>
 			<span
 				style={{
 					display: "block",
@@ -319,6 +316,10 @@ function PlayerPage() {
 						}}
 					/>
 				</div>
+				<button className="replay-btn"></button>
+				<button className="show-track-list"></button>
+				<button className="show-text"></button>
+				<button className="timer"></button>
 			</div>
 		</div>
 	);
