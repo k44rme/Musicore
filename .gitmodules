@@ -1,0 +1,3 @@
+[submodule "Musicore-api"]
+	path = Musicore-api
+	url = https://github.com/k44rme/Musicore-api
