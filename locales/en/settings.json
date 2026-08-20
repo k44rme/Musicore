@@ -5,14 +5,14 @@
     },
 
     "main_tab": {
+        "app": "App",
         "lang": {
             "name": "Language",
             "desc": "Select app language"
         },
         "theme": {
             "name": "Theme",
-            "desc": "Select app theme",
-            "value": ["Musicore Beach", "Gruvbox"]
+            "desc": "Select app theme"
         }
     }
 }

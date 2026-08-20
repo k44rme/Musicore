@@ -1,3 +1,3 @@
-[submodule "Musicore-api"]
-	path = Musicore-api
+[submodule "backend"]
+	path = backend
 	url = https://github.com/k44rme/Musicore-api

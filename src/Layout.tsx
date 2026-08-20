@@ -10,9 +10,9 @@ let visibility = true;
 function Layout() {
 	useEffect(() => {
 		let os: Platform = platform();
-		
-		if (os == 'android') {
-			visibility = false
+
+		if (os == "android") {
+			visibility = false;
 		}
 	}, []);
 
@@ -21,25 +21,25 @@ function Layout() {
 	useEffect(() => {
 		let os: Platform = platform();
 
-		if (os == 'android') {
+		if (os == "android") {
 			device_type = "mobile";
 		} else {
-			device_type = "desktop"
+			device_type = "desktop";
 		}
 	}, []);
-	
+
 	const [device, setDevice] = useState<"mobile" | "desktop">(device_type);
-	
+
 	let resize_event = useWindowResize().windowSize;
 	let window_width = useWindowResize().getWindowSize();
-	
+
 	useEffect(() => {
 		if (window_width <= 500) {
 			setDevice("mobile");
 		} else if (window_width > 500) {
 			setDevice("desktop");
 		}
-		console.log(device)
+		console.log(device);
 	}, [resize_event]);
 
 	useEffect(() => {
@@ -53,7 +53,13 @@ function Layout() {
 	return (
 		<>
 			{visibility && <WindowDecoration />}
-			<div className="app">
+			<div
+				className="app"
+				data-theme={localStorage.getItem("user_theme") || "beach"}
+				data-theme-lightness={
+					localStorage.getItem("user_theme_lightness") || "light"
+				}
+			>
 				<SidePanel />
 				<Outlet context={device} />
 			</div>

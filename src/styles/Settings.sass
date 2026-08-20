@@ -43,6 +43,8 @@ button[popoverTargetAction='hide']
     border-radius: 7px
     padding-left: 10px
     margin-bottom: 10px
+    max-width: 150px
+    margin: 0 auto
 
     &::-webkit-search-cancel-button
         -webkit-appearance: none
@@ -66,11 +68,17 @@ button[popoverTargetAction='hide']
     padding-top: $pt
     padding-left: $pl
     padding-right: 10px
+    resize: horizontal
+    overflow: auto
 
     display: flex
     flex-direction: column
     gap: 5px
+
     width: $vertical-tab-width
+    min-width: 150px
+    max-width: 250px
+
     background-color: oklch(from $bg--secondary .97 c h)
     height: 90dvh
 
@@ -102,6 +110,11 @@ button[popoverTargetAction='hide']
 .vertical-tab-item
     display: flex
 
+.general-setting-header
+    color: $yellow--secondary
+    padding-top: $pt
+    padding-left: $pl
+
 .main-settings-container
     height: 100%
     width: calc( 100% - $vertical-tab-width )
@@ -132,3 +145,18 @@ button[popoverTargetAction='hide']
 #general
     height: 100%
     width: 100%
+
+.dropdown
+    height: 30px
+    width: 150px
+    border: none
+    border-radius: 7px
+    background-color: $bg--primary
+
+    &:focus
+        outline: none
+
+select::picker(select)
+    appearance: base-select
+    border-radius: 7px
+    accent-color: $accent

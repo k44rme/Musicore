@@ -1,6 +1,7 @@
 import "@style/Settings.sass";
 import Icon from "./Icon";
 import { useTranslation } from "react-i18next";
+import { ChangeEventHandler } from "react";
 
 function Setting({
 	title,
@@ -9,17 +10,20 @@ function Setting({
 	className,
 	id,
 	value,
+	dropdownClassName,
 	dropdownName,
-	dropdownClassName
+	onChange,
 }: {
 	title: string;
 	desc: string;
 	type: "dropdown" | "text" | "slider";
 	className?: string;
 	id?: string;
-	value?: {value: string, label: string}[];
-	dropdownName?: string;
-	dropdownClassName?: string
+	value?: { value: string; label: string }[];
+	dropdownClassName?: string;
+	defaultValue?: string;
+	onChange?: ChangeEventHandler<HTMLSelectElement, HTMLSelectElement>;
+	dropdownName: string;
 }) {
 	switch (type) {
 		case "text":
@@ -36,11 +40,22 @@ function Setting({
 				<div className={"setting " + className} id={id}>
 					<div className="setting-wrapper">
 						<span className="setting-title">{title}</span>
-						<select name={dropdownName} id="setting-value">
+						<select
+							className={dropdownClassName + " dropdown"}
+							onChange={onChange}
+							name={dropdownName}
+							defaultValue={localStorage.getItem('i18nextLng') || ""}
+						>
 							{value.map((item, index) => {
-								return <option key={index} value={item.value} className={dropdownClassName}>
-									{item.label}
-								</option>;
+								return (
+									<option
+										key={index}
+										className="dropdown-item"
+										value={item.value}
+									>
+										{item.label}
+									</option>
+								);
 							})}
 						</select>
 						<span className="setting-desc">{desc}</span>
@@ -61,7 +76,7 @@ function Settings() {
 		settings.dataset.current = next_tab;
 	}
 
-	const { t } = useTranslation("settings")
+	const { t, i18n } = useTranslation("settings");
 
 	return (
 		<dialog id="settings" popover="">
@@ -99,7 +114,9 @@ function Settings() {
 								fill="currentColor"
 							/>
 						</svg>
-						<span className="general-settings-title">{t("vertical_tab.general")}</span>
+						<span className="general-settings-title">
+							{t("vertical_tab.general")}
+						</span>
 					</div>
 					<div
 						className="profile-settings vertical-tab-item"
@@ -110,6 +127,7 @@ function Settings() {
 				</div>
 				<div className="main-settings-container">
 					<div id="general">
+						<h2 className="general-setting-header">{t("main_tab.app")}</h2>
 						<Setting
 							title={t("main_tab.lang.name")}
 							desc={t("main_tab.lang.desc")}
@@ -117,14 +135,40 @@ function Settings() {
 							type="dropdown"
 							value={[
 								{
-									value: "English",
-									label: "English"
+									value: "en",
+									label: "English",
 								},
 								{
-									value: "Russian",
-									label: "Русский"
+									value: "ru",
+									label: "Русский",
+								},
+							]}
+							dropdownName="language_selector"
+							onChange={(e) => {
+									i18n.changeLanguage(e.target.value)
+									localStorage.setItem("i18nextLng", e.target.value)
+								}
+							}
+						/>
+						<Setting
+							title={t("main_tab.theme.name")}
+							desc={t("main_tab.theme.desc")}
+							className="language-setting"
+							type="dropdown"
+							value={[
+								{
+									value: "default",
+									label: "Musicore Beach"
+								},
+								{
+									value: "gruvbox",
+									label: "Musicore Gruvbox"
 								}
 							]}
+							dropdownName="language_selector"
+							onChange={(e) => {
+								localStorage.setItem("user_theme", e.target.value)
+							}}
 						/>
 					</div>
 				</div>
