@@ -5,8 +5,9 @@
     height: 30px
 
     appearance: none
-    background-color: $bg--primary
+    background-color: var(--background)
     border: none
+    color: var(--wd-btns-icon-color)
 
     float: right
 
@@ -30,7 +31,7 @@
 .minimize
     border: none
     appearance: none
-    background: $bg--primary
+    background: var(--background)
     border-bottom-left-radius: 7px 
 
     position: absolute
@@ -39,10 +40,11 @@
     width: 40px
     height: 30px
 
+    color: var(--wd-btns-icon-color)
     &-btn:hover 
         cursor: pointer
 
     &:hover
-        border: 1px solid #bbb
-        background-color: #bbb
+        border: 1px solid var(--wd-minimize-icon-hover-color)
+        background-color: var(--wd-minimize-icon-hover-color)
         transition: background-color .25s

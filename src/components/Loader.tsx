@@ -12,10 +12,7 @@ function Loader() {
                         width: 50px;
                         height: 50px;
                         display: grid;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
+                        margin: auto;
                         border:4px solid #0000;
                         border-radius: 50%;
                         border-color: #E4E4ED #0000;

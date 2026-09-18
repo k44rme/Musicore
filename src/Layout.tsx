@@ -48,18 +48,16 @@ function Layout() {
 		} else if (window_width > 500) {
 			setDevice("desktop");
 		}
+
+		let body = document.querySelector(".Musicore") as HTMLBodyElement;
+		body.dataset.theme = "beach"
+		body.dataset.lightness = "dark"
 	}, []);
 
 	return (
 		<>
 			{visibility && <WindowDecoration />}
-			<div
-				className="app"
-				data-theme={localStorage.getItem("user_theme") || "beach"}
-				data-theme-lightness={
-					localStorage.getItem("user_theme_lightness") || "light"
-				}
-			>
+			<div className="app">
 				<SidePanel />
 				<Outlet context={device} />
 			</div>

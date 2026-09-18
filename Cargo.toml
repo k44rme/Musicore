@@ -1,0 +1,12 @@
+[workspace]
+resolver = "3"
+members = ["webserver", "src-tauri"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "LGPL-2.1"
+repository = "https://github.com/k44rme/Musicore"
+
+[workspace.dependencies]
+webserver = { path = "/webserver" }

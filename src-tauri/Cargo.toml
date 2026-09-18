@@ -3,10 +3,9 @@ name = "Musicore"
 version = "0.1.0"
 description = "Music player"
 authors = ["k44rme"]
-edition = "2021"
+edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [lib]
 # The `_lib` suffix may seem redundant but it is necessary
 # to make the lib name unique and wouldn't conflict with the bin name.
@@ -21,6 +20,7 @@ tauri-build = { version = "2", features = [] }
 [dependencies]
 # ✅ Tauri with mobile features
 tauri = { version = "2", features = ["protocol-asset"] }
+webserver = { path = "../webserver" }
 
 tauri-plugin-opener = "2"
 tauri-plugin-fs = "2"

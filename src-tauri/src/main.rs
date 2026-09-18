@@ -6,5 +6,5 @@ pub mod music;
 pub mod profile;
 
 fn main() {
-    musicore_lib::run()
+    musicore_lib::run();
 }

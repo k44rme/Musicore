@@ -4,7 +4,7 @@ $duration: 300ms
 
 #sidebar
     height: calc(100dvh + 1em)
-    background-color: $bg--secondary
+    background-color: var(--sidebar-background)
     margin: 0
     padding: 0
     box-sizing: border-box
@@ -12,11 +12,11 @@ $duration: 300ms
         left: -10px
         top: -10px
 
-    border-top-right-radius: 10px
-    border-bottom-right-radius: 10px
+    $border-radius: 15px
+    border-top-right-radius: $border-radius
+    border-bottom-right-radius: $border-radius
 
     user-select: none
-    color: $yellow--primary
     transition: width $duration
 
     z-index: 110
@@ -28,17 +28,24 @@ $duration: 300ms
         display: none
 
     .stroke, .user-mini > path
-        stroke: $yellow--primary
+        stroke: var(--sidebar-icon-color)
 
     .fill
-        fill: $yellow--primary
+        fill: var(--sidebar-icon-color)
+
+.sidebar--logo
+    &-main-label
+        fill: var(--sidebar-logo-main)
+
+    &-secondary-label
+        fill: var(--sidebar-logo-secondary)
 
 #switcher
     left: 200px
     z-index: 110
 
 #switcher > path
-    fill: $yellow--primary
+    fill: var(--sidebar-icon-color)
 
 #switcher.show
     transform: rotate(180deg)
@@ -93,7 +100,7 @@ $duration: 300ms
         top: 25px
         bottom: 25px
 
-    fill: $secondary
+    fill: var(--sidebar-logo-fill-color)
 
 .menu
     width: 235px
@@ -121,7 +128,7 @@ $duration: 300ms
 
     &-label
         text-decoration: none
-        color: $yellow--secondary !important
+        color: var(--sidebar-text--primary) !important
 
         position: absolute
         left: 70px
@@ -129,38 +136,36 @@ $duration: 300ms
 
         width: 170px
 
-        &:visited
-            color: $black--primary
 
     &:hover .fill
-        fill: #fff !important
+        fill: var(--sidebar-icon-hover-fill-color) !important
 
     &:hover .stroke
-        stroke: #fff !important
+        stroke: var(--sidebar-icon-hover-color) !important
 
     &:hover &-label
-        color: #fff !important
+        color: var(--sidebar-text-hover-color) !important
 
     &:hover
-        background-color: $secondary
+        background-color: var(--sidebar-menu-item-color)
         cursor: pointer
 
 .active
-    background-color: $main
+    background-color: var(--sidebar-active-color)
 
 .icon
-    color: $yellow--primary
-    stroke: $yellow--primary
+    color: var(--sidebar-icon-color)
+    stroke: var(--sidebar-icon-color)
 
     &-fill
-        fill: $yellow--primary
+        fill: var(--sidebar-icon-color)
 
     .menu-item:hover &
-        color: $white--secondary
-        stroke: $white--secondary
+        color: var(--sidebar-icon-hover-color)
+        stroke: var(--sidebar-icon-hover-color)
 
         &-fill
-            fill: $white--primary
+            fill: var(--sidebar-icon-hover-fill-color)
 
 .sidebar--bottom-panel
     display: flex
@@ -197,19 +202,19 @@ $duration: 300ms
         size: 17px
         weight: bold
 
-    color: $black--primary
+    color: var(--sidebar-profile-username-color)
     letter-spacing: 5%
 
     &:hover
-        color: $accent
+        color: var(--sidebar-profile-username-hover-color)
         transition: color .1s
 
 .sidebar--settings
     outline: none
     border: none
     transition: background-color .1s
-    background-color: $bg--secondary
-    color: $yellow--primary
+    background-color: var(--sidebar-icon-background-color)
+    color: var(--sidebar-icon-color)
     border-radius: 5px
     width: 30px
     height: 30px
@@ -220,10 +225,10 @@ $duration: 300ms
         width: 100%
 
     &:hover
-        background-color: $secondary
+        background-color: var(--sidebar-icon-hover-background-color)
 
         &-icon
-            fill: #fff
+            fill: var(--sidebar-icon-hover-fill-color)
 
     &:hover &-icon > path
-        color: #fff !important
+        color: var(--sidebar-icon-hover-color) !important
