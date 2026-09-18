@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/k44rme/Musicore/blob/main/.github/icons/logo.svg" width="100%" />
+  <img src="./.github/icons/logo.svg" width="100%" />
 </p>
 
 # 🎵 **Musicore**
@@ -14,11 +14,11 @@ Lightweight and fast music player, which was built using Tauri and React.ts
 - **Cross-Platform** — Runs smoothly on Windows, macOS, and Linux.
 
 ## 🔧 Technical stack
-- <img src="https://github.com/k44rme/Musicore/blob/main/.github/icons/stack/tauri.svg" height="15" width="15" />  **Tauri**
-- <img src="https://github.com/k44rme/Musicore/blob/main/.github/icons/stack/react.svg" height="20" width="20" />   **React**
-- <img src="https://github.com/k44rme/Musicore/blob/main/.github/icons/stack/typescript.svg" height="20" width="20" />   **TypeScript**
+- <img src="./.github/icons/stack/tauri.svg" height="15" width="15" />  **Tauri**
+- <img src="./.github/icons/stack/react.svg" height="20" width="20" />   **React**
+- <img src="./.github/icons/stack/typescript.svg" height="20" width="20" />   **TypeScript**
 
 # 💰 Donation
 <a href="https://www.donationalerts.com/r/k44rme">
-  <img src="https://github.com/k44rme/Musicore/blob/main/.github/icons/support-button.svg" style="width:300px; border-radius:10px" />
+  <img src="./.github/icons/support-button.svg" style="width:300px; border-radius:10px" />
 </a>
