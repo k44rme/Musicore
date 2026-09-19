@@ -50,8 +50,7 @@ function Layout() {
 		}
 
 		let body = document.querySelector(".Musicore") as HTMLBodyElement;
-		body.dataset.theme = "beach"
-		body.dataset.lightness = "dark"
+		body.dataset.theme = localStorage.getItem("user_theme") || "musicore_beach"
 	}, []);
 
 	return (

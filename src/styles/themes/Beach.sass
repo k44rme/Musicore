@@ -30,9 +30,15 @@ $white--secondary: #eff2fd
 $yellow--primary: #e0af68
 $yellow--secondary: #e0af68
 
-.Musicore[data-theme="beach"][data-lightness="light"]
+
+$dark-bg--primary: #1a1814
+$dark-bg--secondary: #26231e
+$dark-main: #504732
+
+.Musicore[data-theme="musicore_beach"]
     --background: #{$bg--primary}
-    --scroll-color: #888
+    --scrollbar-color: #888
+    --scrollbar-hover-color: #5a5a5a
 
     // ---------- WINDOW DECORATIONS ----------
     --wd-btns-icon-color: #{$black--primary}
@@ -71,4 +77,116 @@ $yellow--secondary: #e0af68
     --song-non-cover-color: #{$accent}
     --song-non-cover-icon: #{$white--secondary}
     
+    // ----------- SETTINGS ------------
+    --settings-background: #{$bg--secondary}
+    --settings-vertical-tab-color: #{$main}
+    --settings-close-button-color: #{$black--primary}
+    --settings-close-button-background-color: #{$bg--primary}
+    --settings-header-color: #{$yellow--secondary}
 
+    --setting-category-color: #{$yellow--primary}
+    --setting-category-hover-color: #fff
+    --setting-category-background-color: #{oklch(from $bg--primary .96 c h)}
+    --setting-category-background-hover-color: #{$accent}
+
+    --setting-background-color: #{$main}
+    --setting-title-color: #{$yellow--primary}
+    --setting-description-color: #{$yellow--secondary}
+    --setting-dropdown-background-color: #{$bg--primary}
+    --setting-select-accent-color: #{$accent}
+
+    // ------------ SEARCH ------------
+    --search-field-border-color: #{$secondary}
+    --search-box-background-color: #{$secondary}
+
+    // ----------- PLAYER -------------
+    --player-cover-icon-stroke-color: #{$white--secondary}
+    --player-non-cover-background-color: #{$accent}
+    --player-accent-color: #{$accent}
+    --player-secondary-color: #{$black--secondary}
+    --player-border-color: #1e293b
+    --player-font-color: #000
+
+    // ----------- HOME PAGE ----------
+    --home-icon-background-color: #{$secondary}
+
+    
+.Musicore[data-theme="night_beach"]
+    --background: #{$dark-bg--primary}
+    --scrollbar-color: #999999
+    --scrollbar-hover-color: #bbbbbb
+
+    // ---------- WINDOW DECORATIONS ----------
+    --wd-btns-icon-color: #{$white}
+    --wd-minimize-icon-hover-color: #424242
+    
+    // ---------- SIDEBAR ----------
+    --sidebar-text--primary: #{$yellow--secondary}
+    --sidebar-text-hover-color: #{$white}
+
+    --sidebar-logo-fill-color: #{$secondary}
+    --sidebar-logo-main: #dfdfdf
+    --sidebar-logo-secondary: #747474
+
+    --sidebar-background: #{$dark-bg--secondary}
+
+    --sidebar-icon-color: #{$yellow--primary}
+    --sidebar-icon-hover-color: #{$white--secondary}
+    --sidebar-icon-hover-fill-color: #{$white--primary}
+    --sidebar-icon-hover-background-color: #{$secondary}
+    --sidebar-icon-background-color: #{$dark-bg--secondary}
+
+    --sidebar-menu-item-color: #{$accent}
+
+    --sidebar-profile-username-color: #{$white--secondary}
+    --sidebar-profile-username-hover-color: #{$accent}
+
+    --sidebar-active-color: #{$dark-main}
+
+    // ---------- SONG COMPONENTS ----------
+    --song-background-color: #{$dark-bg--secondary}
+
+    --song-text--primary: #{$yellow--primary}
+    --song-text--secondary: #{$yellow--secondary}
+    --song-text--secondary-hover: #{$red--primary}
+
+    --song-non-cover-color: #{$accent}
+    --song-non-cover-icon: #{$white--secondary}
+
+    // ---------- PROFILE -----------
+    --profile-accent: #{$dark-bg--secondary}
+    --profile-nickname: #{$white}
+    
+    // ----------- SETTINGS ------------
+    --settings-background: #{$dark-bg--secondary}
+    --settings-vertical-tab-color: #{$dark-main}
+    --settings-close-button-color: #{$white}
+    --settings-close-button-background-color: #{$dark-bg--primary}
+    --settings-header-color: #{$yellow--secondary}
+
+    --setting-category-color: #{$yellow--primary}
+    --setting-category-hover-color: #fff
+    --setting-category-background-color: #{$dark-bg--primary}   
+    --setting-category-background-hover-color: #{$accent}
+
+    --setting-background-color: #{$dark-main}
+    --setting-title-color: #{$yellow--primary}
+    --setting-description-color: #{$yellow--secondary}
+    --setting-dropdown-background-color: #{$dark-bg--primary}
+    --setting-dropdown-item-color: #fff
+    --setting-select-accent-color: #{$accent}
+
+    // ------------ SEARCH ------------
+    --search-field-border-color: #{$secondary}
+    --search-box-background-color: #{$secondary}
+
+    // ----------- PLAYER -------------
+    --player-cover-icon-stroke-color: #{$white--secondary}
+    --player-non-cover-background-color: #{$accent}
+    --player-accent-color: #{$accent}
+    --player-secondary-color: #{$black--secondary}
+    --player-border-color: #1e293b
+    --player-font-color: #fff
+
+    // ----------- HOME PAGE ----------
+    --home-icon-background-color: #{$secondary}

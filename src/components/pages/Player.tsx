@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import player from "../../logic/player";
 import "@style/pages/Player.sass";
-import PlayerIcon from "../icons/PlayerIcon"
+import PlayerIcon from "../icons/PlayerIcon";
 
 function PlayerPage() {
 	const [icon, setIcon] = useState("play");
@@ -227,7 +227,6 @@ function PlayerPage() {
 			/>
 			{cover == "" ? (
 				<div className="player-cover non-cover">
-					<span className="player-cover-background"></span>
 					<PlayerIcon icon="music" className="player-cover-icon" />
 				</div>
 			) : (
@@ -237,7 +236,9 @@ function PlayerPage() {
 					className="player-cover"
 				/>
 			)}
-			<h2 style={{ fontSize: "30px", textAlign: "center" }}>{label}</h2>
+			<h2 style={{ fontSize: "30px", textAlign: "center" }} id="label">
+				{label}
+			</h2>
 			<span
 				style={{
 					display: "block",
@@ -245,6 +246,7 @@ function PlayerPage() {
 					fontSize: "20px",
 					marginTop: "5px",
 				}}
+				id="artist"
 			>
 				{artist}
 			</span>

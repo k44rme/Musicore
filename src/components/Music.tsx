@@ -127,7 +127,7 @@ function Music() {
 				transform: "translateY(-50%)",
 			}}
 		>
-			<span style={{ textAlign: "center" }}>
+			{/* <span style={{ textAlign: "center" }}>
 				Путь до вашей папки c музыкой?
 			</span>
 			<form className="find-music">
@@ -160,7 +160,7 @@ function Music() {
 				>
 					OK
 				</button>
-			</form>
+			</form> */}
 		</div>
 	);
 }

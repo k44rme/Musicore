@@ -13,6 +13,7 @@ function Setting({
 	dropdownClassName,
 	dropdownName,
 	onChange,
+	selected
 }: {
 	title: string;
 	desc: string;
@@ -24,6 +25,7 @@ function Setting({
 	defaultValue?: string;
 	onChange?: ChangeEventHandler<HTMLSelectElement, HTMLSelectElement>;
 	dropdownName: string;
+	selected?: string
 }) {
 	switch (type) {
 		case "text":
@@ -44,7 +46,7 @@ function Setting({
 							className={dropdownClassName + " dropdown"}
 							onChange={onChange}
 							name={dropdownName}
-							defaultValue={localStorage.getItem('i18nextLng') || ""}
+							defaultValue={selected}
 						>
 							{value.map((item, index) => {
 								return (
@@ -149,6 +151,7 @@ function Settings() {
 									localStorage.setItem("i18nextLng", e.target.value)
 								}
 							}
+							selected={localStorage.getItem("i18nextLng") || ""}
 						/>
 						<Setting
 							title={t("main_tab.theme.name")}
@@ -157,18 +160,24 @@ function Settings() {
 							type="dropdown"
 							value={[
 								{
-									value: "default",
+									value: "musicore_beach",
 									label: "Musicore Beach"
 								},
 								{
+									value: "night_beach",
+									label: "Musicore Night Beach"
+								},
+								{
 									value: "gruvbox",
-									label: "Musicore Gruvbox"
+									label: "Gruvbox"
 								}
 							]}
 							dropdownName="language_selector"
 							onChange={(e) => {
 								localStorage.setItem("user_theme", e.target.value)
+								window.location.reload()
 							}}
+							selected={localStorage.getItem("user_theme") || ""}
 						/>
 					</div>
 				</div>

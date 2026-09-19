@@ -3,13 +3,12 @@ import banner from "@assets/test_assets/k44rme_banner.png";
 
 import "@style/pages/Profile.sass";
 import { useEffect, useState } from "react";
-import { invoke } from "@tauri-apps/api/core";
 import { readConfig } from "../../logic/config";
 import { Profile } from "../../structs";
 
 function ProfilePage() {
 	const [profile, setProfile] = useState<Profile>();
-	const [name, setName] = useState<string>();
+	/* const [name, setName] = useState<string>(); */
 
 	/* useEffect(() => {
 		const loadProfile = async () => {
@@ -34,21 +33,6 @@ function ProfilePage() {
 		nickname = profile_string;
 	}
 	console.log(nickname); */
-
-	function edit_profile_name() {
-		const editProfileName = async () => {
-			try {
-				await invoke("edit_profile", {
-					prop: "nickname",
-					val: name ?? "Nickname",
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-
-		editProfileName();
-	}
 
 	useEffect(() => {
 		const loadConfig = async () => {
@@ -84,27 +68,6 @@ function ProfilePage() {
 				>
 					{nickname}
 				</h1>
-				<form className="nickname-edit hide">
-					<input
-						type="text"
-						className="nickname-edit-field"
-						value={name}
-						onChange={(e) => {
-							setName(e.target.value);
-						}}
-					/>
-					<button
-						type="submit"
-						className="nickname-edit-btn"
-						onClick={(e) => {
-							e.preventDefault();
-							edit_profile_name()
-							window.location.reload();
-						}}
-					>
-						OK
-					</button>
-				</form>
 			</div>
 			{/* <div className="body">
                 <div className="recent">
